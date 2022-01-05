@@ -83,19 +83,44 @@ class PQ{
 }
 
 class py_api{
-addAgent(str)
-chooseNextEdge(str)
-getAgents()
-getGraph()
-getInfo()
-getPokemons()
-isRunning()
-login(str)
-move()
+-addAgent(str)
+-chooseNextEdge(str)
+-getAgents()
+-getGraph()
+-getInfo()
+-getPokemons()
+-isRunning()
+-login(str)
+-move()
 }
 
 class pokemon{
++str: pok_name
++float: value
++int: type
++pos: tuple[float]
+}
 
+class agent{
++int: id
++float: value
++int: src
++int: dest
++float: speed
++float: grade
++pos: tuple[float]
+}
+
+object GameServer{
++int: pokemons
++bool: is_logged_in
++int: moves
++int: grade
++int: game_level
++int: max_user_level
++int: id
++str: graph
++int: agents
 }
 
 @enduml
