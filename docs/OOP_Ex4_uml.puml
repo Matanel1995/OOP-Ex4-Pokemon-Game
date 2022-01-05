@@ -1,7 +1,13 @@
 import
 @startuml
 
-interface GraphInterface{
+
+class DiGraph{
++nods: dict
++edges: dict
++mc: int
++edgesNum: int
++nodesNum: int
 -v_size(): int
 -e_size(): int
 -get_all_v(): dict
@@ -12,26 +18,6 @@ interface GraphInterface{
 -add_node(node_id: int, pos: tuple = None): bool
 -remove_node(node_id: int): bool
 -remove_edge(node_id1: int, node_id2: int): bool
-}
-
-interface GraphAlgoInterface{
--get_graph(): GraphInterface
--load_from_json(file_name: str): bool
--save_to_json(file_name: str): bool
--shortest_path(id1: int, id2: int): float, list
--TSP(node_lst: List[int]): List[int], float
--centerPoint(): int, float
--plot_graph(): None
-}
-
-GraphInterface <|-- DiGraph
-GraphAlgoInterface <|-- GraphAlgo
-class DiGraph{
-+nods: dict
-+edges: dict
-+mc: int
-+edgesNum: int
-+nodesNum: int
 +add__node(n: Node)
 +edges_str(): str
 +nodes_str(): str
@@ -60,6 +46,13 @@ class Node{
 
 class GraphAlgo{
 +my_graph: DiGraph
+-get_graph(): GraphInterface
+-load_from_json(file_name: str): bool
+-save_to_json(file_name: str): bool
+-shortest_path(id1: int, id2: int): float, list
+-TSP(node_lst: List[int]): List[int], float
+-centerPoint(): int, float
+-plot_graph(): None
 +set_my_graph(new_graph: DiGraph)
 +diakstra(src: int):
 +relax(src: int, dest: int)
