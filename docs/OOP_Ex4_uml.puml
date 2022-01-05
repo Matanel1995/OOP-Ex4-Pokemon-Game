@@ -94,4 +94,8 @@ login(str)
 move()
 }
 
+class pokemon{
+
+}
+
 @enduml
