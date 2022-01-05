@@ -82,6 +82,16 @@ class PQ{
 +__str__()
 }
 
-
+class py_api{
+addAgent(str)
+chooseNextEdge(str)
+getAgents()
+getGraph()
+getInfo()
+getPokemons()
+isRunning()
+login(str)
+move()
+}
 
 @enduml
