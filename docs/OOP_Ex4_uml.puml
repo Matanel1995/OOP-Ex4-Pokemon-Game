@@ -94,11 +94,13 @@ class py_api{
 -move()
 }
 
-class pokemon{
+class Pokémon{
++int: id
 +str: pok_name
 +float: value
 +int: type
-+pos: tuple[float]
++tuple[float]: pos
++int: my_agent
 }
 
 class agent{
@@ -108,11 +110,12 @@ class agent{
 +int: dest
 +float: speed
 +float: grade
-+pos: tuple[float]
++tuple[float]: pos
++next_Pokémon
 }
 
 object GameServer{
-+int: pokemons
++int: Pokémon_num
 +bool: is_logged_in
 +int: moves
 +int: grade
