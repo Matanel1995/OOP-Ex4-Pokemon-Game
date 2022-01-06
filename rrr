@@ -1,0 +1,62 @@
+case 0:
+{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.197656770719604,32.10191878639921,0.0"}}]}
+ {"GameServer":{"pokemons":1,"is_logged_in":false,"moves":0,"grade":0,"game_level":0,"max_user_level":-1,"id":0,"graph":"data/A0","agents":1}}
+
+case 1:
+{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.197656770719604,32.10191878639921,0.0"}},{"Pokemon":{"value":8.0,"type":-1,"pos":"35.199963710098416,32.105723673136964,0.0"}}]}
+ {"GameServer":{"pokemons":2,"is_logged_in":false,"moves":0,"grade":0,"game_level":1,"max_user_level":-1,"id":0,"graph":"data/A0","agents":1}}
+
+case 2:
+{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.197656770719604,32.10191878639921,0.0"}},{"Pokemon":{"value":8.0,"type":-1,"pos":"35.199963710098416,32.105723673136964,0.0"}},{"Pokemon":{"value":13.0,"type":-1,"pos":"35.195224052340706,32.10575624080796,0.0"}}]}
+ {"GameServer":{"pokemons":3,"is_logged_in":false,"moves":0,"grade":0,"game_level":2,"max_user_level":-1,"id":0,"graph":"data/A0","agents":1}}
+
+case 3:
+{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.197656770719604,32.10191878639921,0.0"}},{"Pokemon":{"value":8.0,"type":-1,"pos":"35.199963710098416,32.105723673136964,0.0"}},{"Pokemon":{"value":13.0,"type":-1,"pos":"35.195224052340706,32.10575624080796,0.0"}},{"Pokemon":{"value":5.0,"type":-1,"pos":"35.19494883961552,32.105809680537625,0.0"}}]}
+ {"GameServer":{"pokemons":4,"is_logged_in":false,"moves":0,"grade":0,"game_level":3,"max_user_level":-1,"id":0,"graph":"data/A0","agents":1}}
+
+case 4:
+{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.188900353135324,32.105320110855615,0.0"}},{"Pokemon":{"value":8.0,"type":-1,"pos":"35.206679711961414,32.10571613186106,0.0"}},{"Pokemon":{"value":13.0,"type":-1,"pos":"35.212669424769075,32.105340746955505,0.0"}},{"Pokemon":{"value":5.0,"type":-1,"pos":"35.21120742821597,32.10240519983585,0.0"}},{"Pokemon":{"value":9.0,"type":-1,"pos":"35.2107064115802,32.10181728154006,0.0"}}]}
+ {"GameServer":{"pokemons":5,"is_logged_in":false,"moves":0,"grade":0,"game_level":4,"max_user_level":-1,"id":0,"graph":"data/A1","agents":1}}
+
+case 5:
+{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.188900353135324,32.105320110855615,0.0"}},{"Pokemon":{"value":8.0,"type":-1,"pos":"35.206679711961414,32.10571613186106,0.0"}},{"Pokemon":{"value":13.0,"type":-1,"pos":"35.212669424769075,32.105340746955505,0.0"}},{"Pokemon":{"value":5.0,"type":-1,"pos":"35.21120742821597,32.10240519983585,0.0"}},{"Pokemon":{"value":9.0,"type":-1,"pos":"35.2107064115802,32.10181728154006,0.0"}},{"Pokemon":{"value":12.0,"type":-1,"pos":"35.20704629752213,32.105471692111855,0.0"}}]}
+ {"GameServer":{"pokemons":6,"is_logged_in":false,"moves":0,"grade":0,"game_level":5,"max_user_level":-1,"id":0,"graph":"data/A1","agents":1}}
+
+case 6:
+{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.188900353135324,32.105320110855615,0.0"}}]}
+ {"GameServer":{"pokemons":1,"is_logged_in":false,"moves":0,"grade":0,"game_level":6,"max_user_level":-1,"id":0,"graph":"data/A1","agents":1}}
+
+case 7:
+{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.188900353135324,32.105320110855615,0.0"}},{"Pokemon":{"value":8.0,"type":-1,"pos":"35.206679711961414,32.10571613186106,0.0"}}]}
+ {"GameServer":{"pokemons":2,"is_logged_in":false,"moves":0,"grade":0,"game_level":7,"max_user_level":-1,"id":0,"graph":"data/A1","agents":1}}
+
+case 8:
+{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.20273974670703,32.10439601193746,0.0"}},{"Pokemon":{"value":8.0,"type":-1,"pos":"35.189541903742466,32.10714473742062,0.0"}},{"Pokemon":{"value":13.0,"type":1,"pos":"35.198546018801096,32.10442041371198,0.0"}}]}
+ {"GameServer":{"pokemons":3,"is_logged_in":false,"moves":0,"grade":0,"game_level":8,"max_user_level":-1,"id":0,"graph":"data/A2","agents":1}}
+
+case 9:
+{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.20273974670703,32.10439601193746,0.0"}},{"Pokemon":{"value":8.0,"type":-1,"pos":"35.189541903742466,32.10714473742062,0.0"}},{"Pokemon":{"value":13.0,"type":1,"pos":"35.198546018801096,32.10442041371198,0.0"}}]}
+ {"GameServer":{"pokemons":3,"is_logged_in":false,"moves":0,"grade":0,"game_level":8,"max_user_level":-1,"id":0,"graph":"data/A2","agents":1}}
+
+case 10:
+{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.20273974670703,32.10439601193746,0.0"}},{"Pokemon":{"value":8.0,"type":-1,"pos":"35.189541903742466,32.10714473742062,0.0"}},{"Pokemon":{"value":13.0,"type":1,"pos":"35.198546018801096,32.10442041371198,0.0"}},{"Pokemon":{"value":5.0,"type":-1,"pos":"35.20418622066997,32.10618391544376,0.0"}},{"Pokemon":{"value":9.0,"type":-1,"pos":"35.207511563168026,32.10516145234799,0.0"}}]}
+ {"GameServer":{"pokemons":5,"is_logged_in":false,"moves":0,"grade":0,"game_level":10,"max_user_level":-1,"id":0,"graph":"data/A2","agents":1}}
+
+case 11:
+{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.20273974670703,32.10439601193746,0.0"}},{"Pokemon":{"value":8.0,"type":-1,"pos":"35.189541903742466,32.10714473742062,0.0"}},{"Pokemon":{"value":13.0,"type":1,"pos":"35.198546018801096,32.10442041371198,0.0"}},{"Pokemon":{"value":5.0,"type":-1,"pos":"35.20418622066997,32.10618391544376,0.0"}},{"Pokemon":{"value":9.0,"type":-1,"pos":"35.207511563168026,32.10516145234799,0.0"}},{"Pokemon":{"value":12.0,"type":-1,"pos":"35.19183431463849,32.106897389061444,0.0"}}]}
+
+
+case 12:
+{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.20392770907119,32.10833067124629,0.0"}}]}
+ {"GameServer":{"pokemons":1,"is_logged_in":false,"moves":0,"grade":0,"game_level":12,"max_user_level":-1,"id":0,"graph":"data/A3","agents":1}}
+
+case 13:
+{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.20392770907119,32.10833067124629,0.0"}},{"Pokemon":{"value":8.0,"type":-1,"pos":"35.20622459040522,32.101281022067994,0.0"}}]}
+
+
+case 14:
+{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.20392770907119,32.10833067124629,0.0"}},{"Pokemon":{"value":8.0,"type":-1,"pos":"35.20622459040522,32.101281022067994,0.0"}},{"Pokemon":{"value":13.0,"type":-1,"pos":"35.21233170626735,32.10466952803471,0.0"}}]}
+
+case 15:
+{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.20392770907119,32.10833067124629,0.0"}},{"Pokemon":{"value":8.0,"type":-1,"pos":"35.20622459040522,32.101281022067994,0.0"}},{"Pokemon":{"value":13.0,"type":-1,"pos":"35.21233170626735,32.10466952803471,0.0"}},{"Pokemon":{"value":5.0,"type":-1,"pos":"35.21200574506042,32.105721621191464,0.0"}}]}
+ {"GameServer":{"pokemons":4,"is_logged_in":false,"moves":0,"grade":0,"game_level":15,"max_user_level":-1,"id":0,"graph":"data/A3","agents":1}}

@@ -3,7 +3,7 @@ from heapq import *
 from Pokemon import *
 
 
-class PQ(object):
+class PQByPokemon(object):
     def __init__(self):
         self.Q = list()
 

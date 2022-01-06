@@ -109,7 +109,6 @@ class agent{
 +int: src
 +int: dest
 +float: speed
-+float: grade
 +tuple[float]: pos
 +next_Pokémon
 }

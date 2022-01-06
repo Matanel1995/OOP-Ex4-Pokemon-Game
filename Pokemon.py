@@ -2,8 +2,9 @@ import math
 from files_from_Ex3.Node import Node
 
 
+
 class Pokemon:
-    def _init_(self, pokemon_info: dict):
+    def __init__(self, pokemon_info: dict):
         self.value = float(pokemon_info['value'])
         self.type = int(pokemon_info['type'])
         self.pos = str(pokemon_info['pos'])
@@ -14,6 +15,7 @@ class Pokemon:
         self.src = None
         self.dst = None
         self.is_aget_allocated = False
+        self.curr_edge = None
 
     def dist_pokemon_node(self, node: Node):
         # this function will find the distance between pokemon and a Node
