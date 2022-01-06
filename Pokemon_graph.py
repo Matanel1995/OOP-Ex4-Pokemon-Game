@@ -1,6 +1,5 @@
-from files_from_Ex3 import DiGraph
-from files_from_Ex3 import GraphAlgo
-import Agent, Pokemon
+from Ex3Files import GraphAlgo
+from Classes import Pokemon, Agent
 
 
 class PokemonGraph:

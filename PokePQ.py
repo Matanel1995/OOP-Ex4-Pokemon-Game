@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from typing import Any
 from heapq import *
 
-import Pokemon
+from Classes import Pokemon
 
 
 @dataclass(order=True)

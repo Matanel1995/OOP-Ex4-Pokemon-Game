@@ -1,6 +1,6 @@
 import json
 import os
-from Pokemon import *
+from Classes.Pokemon import *
 
 
 def init_pokemons(pokemons):

@@ -1,21 +1,23 @@
 from heapq import *
 
-from Pokemon import *
 import Pokemon
 
 
 class PQByPokemon(object):
     def __init__(self):
         self.Q = list()
+        self.n: int = 0
 
     def add(self, poke: Pokemon):
-        heappush(self.Q, ((-1) * poke.value, poke))
+        heappush(self.Q, ((-1) * poke.value, self.n, poke))
+        self.n += 1
 
     def pop(self):
-        return heappop(self.Q)
+        return heappop(self.Q)[2]
 
     def push_pop(self, poke: Pokemon):
-        return heappushpop(self.Q, ((-1) * poke.value, poke))
+        heappushpop(self.Q, ((-1) * poke.value, self.n, poke))
+        self.n += 1
 
     def get_w(self, i: int):
         return self.Q[i][0]
