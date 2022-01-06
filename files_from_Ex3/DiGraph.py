@@ -9,7 +9,7 @@ def st_edge(src: int, dest: int):
     return src.__str__() + "to" + dest.__str__()
 
 
-class DiGraph():
+class DiGraph:
     nodes: dict = None
     edges: dict = None
     mc: int = None
