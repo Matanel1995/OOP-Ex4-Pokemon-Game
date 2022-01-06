@@ -13,7 +13,7 @@ def st_path(src: int, dest: int):
     return src.__str__() + "to" + dest.__str__()
 
 
-class GraphAlgo():
+class GraphAlgo:
     paths: dict
 
     def __init__(self, g=DiGraph()):

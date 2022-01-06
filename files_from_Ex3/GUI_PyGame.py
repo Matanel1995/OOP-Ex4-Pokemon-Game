@@ -5,7 +5,7 @@ import pygame
 from pygame import QUIT, KEYDOWN, K_ESCAPE, MOUSEBUTTONDOWN
 
 # from src import GraphAlgoInterface, GraphAlgo
-from src.DiGraph import *
+from DiGraph import *
 
 pygame.init()
 # init display res
