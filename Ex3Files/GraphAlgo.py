@@ -26,25 +26,23 @@ class GraphAlgo:
     def get_graph(self) -> DiGraph:
         return self.my_graph
 
-    def load_from_json(self, file_name: str) -> bool:
+    def load_from_json(self, file_name: Any) -> bool:
         try:
-            f = open(file_name)
-            data = json.load(f)
             self.my_graph.edgesNum = 0
             self.my_graph.nodesNum = 0
             self.my_graph.mc = 0
-            if 'Nodes' in data:
+            if 'Nodes' in file_name:
                 self.my_graph.nodes = dict()
-                for node in data['Nodes']:
+                for node in file_name['Nodes']:
                     if 'pos' in node:
                         temp_pos = tuple(map(float, node['pos'].split(',')))
                     else:
                         temp_pos = None
                     temp_id: int = node['id']
                     self.my_graph.add_node(temp_id, temp_pos)
-                if 'Edges' in data:
+                if 'Edges' in file_name:
                     self.my_graph.edges = dict()
-                    for edge in data['Edges']:
+                    for edge in file_name['Edges']:
                         temp_src: int = edge['src']
                         temp_dest: int = edge['dest']
                         if 'w' in edge:
@@ -53,7 +51,6 @@ class GraphAlgo:
                             temp_w: float = 0
                         self.my_graph.add_edge(temp_src, temp_dest, temp_w)
                         self.my_graph.mc = 0
-            f.close()
             return True
         except FileNotFoundError:
             print("No such file, please check your files and location")
