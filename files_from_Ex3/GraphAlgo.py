@@ -3,19 +3,17 @@ from collections import deque
 from itertools import permutations
 from typing import List
 
-from GraphAlgoInterface import GraphAlgoInterface
-from src import GraphInterface
-from src.DiGraph import *
-from src.GUI_PyGame import plot_graph
-from src.Node import *
-from src.PQ import *
+from DiGraph import *
+from GUI_PyGame import plot_graph
+from Node import *
+from PQ import *
 
 
 def st_path(src: int, dest: int):
     return src.__str__() + "to" + dest.__str__()
 
 
-class GraphAlgo(GraphAlgoInterface):
+class GraphAlgo():
     paths: dict
 
     def __init__(self, g=DiGraph()):
@@ -25,7 +23,7 @@ class GraphAlgo(GraphAlgoInterface):
     def set_my_graph(self, new_graph: DiGraph):
         self.my_graph = new_graph
 
-    def get_graph(self) -> GraphInterface:
+    def get_graph(self) -> DiGraph:
         return self.my_graph
 
     def load_from_json(self, file_name: str) -> bool:

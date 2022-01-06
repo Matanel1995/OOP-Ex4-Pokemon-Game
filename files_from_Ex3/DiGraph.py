@@ -1,6 +1,5 @@
 import random
 
-from GraphInterface import GraphInterface
 import json
 
 from Node import *
@@ -10,7 +9,7 @@ def st_edge(src: int, dest: int):
     return src.__str__() + "to" + dest.__str__()
 
 
-class DiGraph(GraphInterface):
+class DiGraph():
     nodes: dict = None
     edges: dict = None
     mc: int = None
