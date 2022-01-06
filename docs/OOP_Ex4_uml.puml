@@ -126,4 +126,22 @@ object GameServer{
 +int: agents
 }
 
+object client{
+-start_connection(ip, port)
+-__send_message(msg)
+-get_agents()
+-add_agent(json_of_node)
+-et_graph()
+-get_info()
+-get_pokemons()
+-is_running()
+-time_to_end()
+-start()
+-stop()
+-move()
+-choose_next_edge(next_agent_node_json)
+-log_in(id_str)
+-stop_connection()
+}
+
 @enduml
