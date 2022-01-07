@@ -119,7 +119,7 @@ class Agent{
 +int: z_pos
 +int: src
 +int: dest
-+next_Pokémon
++next_pokemon
 +list: path
 }
 
