@@ -91,7 +91,7 @@ class GameAlgo:
     def choose_agent(self):
         curr_poke = self.pokemons.pop()
         min_dist = sys.float_info.max
-        chosen_agent = sys.float_info.max
+        chosen_agent = -1
         for a in self.agents.values():
             if a.next_pokemon is None:
                 temp_dist = self.time_to_poke(a.id, curr_poke.src)
@@ -102,7 +102,7 @@ class GameAlgo:
             1]
         self.agents.get(chosen_agent).path.append(curr_poke.dst)
         self.agents.get(chosen_agent).next_pokemon = 1
-        if chosen_agent != sys.float_info.max:
+        if chosen_agent != -1:
             return chosen_agent
         return None
 
