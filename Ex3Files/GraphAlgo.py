@@ -4,7 +4,6 @@ from itertools import permutations
 from typing import List
 
 from Ex3Files.DiGraph import *
-from Ex3Files.GUI_PyGame import plot_graph
 from Ex3Files.Node import *
 from Ex3Files.PQ import *
 
