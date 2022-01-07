@@ -22,7 +22,7 @@ class GameAlgo:
         self.pokemons: PQByPokemon = PQByPokemon()
         self.agents: dict = dict()
 
-    def update_game(self, pokemons_json: str = None, agents_json: str = None, graph_json: str = None):
+    def update_game(self, pokemons_json: str, agents_json: str, graph_json):
         if pokemons_json is not None:
             self.init_pokemons(pokemons_json)
         if agents_json is not None:
@@ -47,7 +47,7 @@ class GameAlgo:
                 if 'pos' in poke:
                     pos_ = tuple(map(float, poke['pos'].split(',')))
                 else:
-                    pos_ = None
+                    pos_ = (-1, -1, -1)
                 temp = Pokemon(value_, type_, pos_)
                 self.pokemons.add(temp)
 
@@ -116,11 +116,11 @@ class GameAlgo:
         for node1 in self.graph.get_graph().nodes.values():
             for node2 in self.graph.get_graph().nodes.values():
                 node_dist = find_dist_nodes(node1, node2)
-                poke_dist = pokemon[2].dist_pokemon_node(node1) + pokemon[2].dist_pokemon_node(node2)
+                poke_dist = pokemon.dist_pokemon_node(node1) + pokemon.dist_pokemon_node(node2)
                 # if the distances is almost equals
                 if abs(node_dist - poke_dist) <= Epsilon:
                     # check the type in order to decide which one is SRC and which one is DST
-                    if pokemon[2].type == 1:  # DST  > SRC
+                    if pokemon.type_ == 1:  # DST  > SRC
                         src = min(int(node1.id), int(node2.id))
                         dst = max(int(node1.id), int(node2.id))
                     else:
@@ -128,8 +128,8 @@ class GameAlgo:
                         dst = min(int(node1.id), int(node2.id))
                     # check if there is an edge between SRC and DST is so update pokemon values
                     if st_edge(src, dst) in self.graph.get_graph().edges:
-                        pokemon[2].src = src
-                        pokemon[2].dst = dst
+                        pokemon.src = src
+                        pokemon.dst = dst
                         return
 
     def all_poke_src_dst(self):
@@ -166,45 +166,45 @@ class GameAlgo:
         client.move()
 
 
-PORT = 6666
-# server host (default localhost 127.0.0.1)
-HOST = '127.0.0.1'
-
-
 def main():
-    my_client = Client()
-    my_client.start_connection(HOST, PORT)
-    # bla = my_client.get_info()
+    PORT = 6666
+    # server host (default localhost 127.0.0.1)
+    HOST = '127.0.0.1'
+    MyClient = Client()
+    MyClient.start_connection(HOST, PORT)
+    # bla = MyClient.get_info()
     # blaObj = json.loads(bla)
     game = GameAlgo()
     # print("Hera re the pokemons")
-    # game.init_pokemons(my_client.get_pokemons())
-    # game.init_graph(my_client.get_graph())
+    # game.init_pokemons(MyClient.get_pokemons())
+    # game.init_graph(MyClient.get_graph())
     # print(game.pokemons)
     # game.all_pok_src_dst()
     # print(len(game.agents))
     # print(str(game.pokemons.pop().src))
     # for i in range(0 , int(blaObj['GameServer']['agents'])):
-    # my_client.add_agent('{\"id\":'+ str(str(game.pokemons.pop().src)) +'}')
-    # my_client.add_agent("{\"id\":1}")
-    # my_client.add_agent("{\"id\":2}")
-    # my_client.add_agent("{\"id\":3}")
-    # my_client.start()
+    # MyClient.add_agent('{\"id\":'+ str(str(game.pokemons.pop().src)) +'}')
+    # MyClient.add_agent("{\"id\":1}")
+    # MyClient.add_agent("{\"id\":2}")
+    # MyClient.add_agent("{\"id\":3}")
+    # MyClient.start()
 
     # game = GameAlgo()
-    # game.init_pokemons(my_client.get_pokemons())
-    # game.init_graph(my_client.get_graph())
-    game.beginning_of_the_game(my_client)
-    game.update_game(my_client.get_pokemons(), my_client.get_agents(), my_client.get_graph())
-    my_client.start()
-    while my_client.is_running() == "true":
-        game.update_game(my_client.get_pokemons(), my_client.get_agents())
-        game.game_algorithm(my_client)
-        print(my_client.time_to_end())
-        print(my_client.get_info())
-        time.sleep(0.12)
+    # game.init_pokemons(MyClient.get_pokemons())
+    # game.init_graph(MyClient.get_graph())
+    game.beginning_of_the_game(MyClient)
+    game.update_game(MyClient.get_pokemons(), MyClient.get_agents(), MyClient.get_graph())
+    MyClient.start()
+    while MyClient.is_running() == "true":
+        game.update_game(MyClient.get_pokemons(), MyClient.get_agents(), None)
+        game.game_algorithm(MyClient)
+        # for a in game.agents.values():
+        # print(a)
+        print(MyClient.time_to_end())
+        print(MyClient.get_info())
+        time.sleep(0.1)
     # game.all_pok_src_dst()
-    # game.init_agents(my_client.get_agents())
+    # game.init_agents(MyClient.get_agents())
     # print(game.pokemons)
     # print(game.time_to_poke(0, 9))
     # print(game.time_to_poke(1, 9))
@@ -212,10 +212,10 @@ def main():
     # temp = game.choose_agent()
     # print(temp)
     # print(game.agents.get(temp).path)
-    my_client.stop_connection()
+    MyClient.stop_connection()
     print("Hello")
     exit(0)
 
 
-if __name__ == "_main_":
+if __name__ == "__main__":
     main()
