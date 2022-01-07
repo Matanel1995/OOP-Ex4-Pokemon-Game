@@ -199,49 +199,49 @@ class GraphAlgo:
             pq = PQ()
             for dest_id in node_lst:
                 if dest_id != src_id:
-                    temp_n = Node.Node(dest_id)
+                    temp_n = Node(dest_id)
                     temp_n.set_node_weight(self.get_node_w(dest_id))
                     pq.add(temp_n)
-            sum = 0
+            sum_ = 0
             temp_path = list()
             temp_curr_id = src_id
             temp_curr_tuple = (src_id, 0)
             temp_path.append(temp_curr_id)
             while not pq.is_empty():
-                sum += self.shortest_path(temp_curr_id, pq.peek()[1])[0]
+                sum_ += self.shortest_path(temp_curr_id, pq.peek()[1])[0]
                 temp_curr_id = pq.peek()[1]
                 temp_path.append(pq.pop()[1])
-            if sum < min_:
-                min_ = sum
+            if sum_ < min_:
+                min_ = sum_
                 returned_path = temp_path
         return returned_path, min
 
     #   OG tsp
-    def og_tsp(self, node_lst: List[int]) -> (List[int], float):
-        min_dist = MAX_FLOAT
-        returned_path = list()
-        for src_id_curr in node_lst:
-            pq = PQ()
-            for dest_id_curr in node_lst:
-                if dest_id_curr != src_id_curr:
-                    temp_node = Node.Node(dest_id_curr)
-                    short_dist = self.shortest_path(src_id_curr, dest_id_curr)
-                    temp_node.set_node_weight(short_dist[0])
-                    pq.add(temp_node)
-            sum_path: float = 0
-            temp_path = list()
-            temp_path.append(src_id_curr)
-            while not pq.is_empty():
-                short_dist = self.shortest_path(src_id_curr, pq.peek())
-                sum_path += short_dist[0]
-                temp_path.append(pq.pop())
-            if sum_path < min_dist:
-                min_dist = sum_path
-                returned_path = temp_path
-        if min_dist == MAX_FLOAT:
-            return None, float('inf')
-        else:
-            return returned_path, min_dist
+    # def og_tsp(self, node_lst: List[int]) -> (List[int], float):
+    #     min_dist = MAX_FLOAT
+    #     returned_path = list()
+    #     for src_id_curr in node_lst:
+    #         pq = PQ()
+    #         for dest_id_curr in node_lst:
+    #             if dest_id_curr != src_id_curr:
+    #                 temp_node = Node(dest_id_curr)
+    #                 short_dist = self.shortest_path(src_id_curr, dest_id_curr)
+    #                 temp_node.set_node_weight(short_dist[0])
+    #                 pq.add(temp_node)
+    #         sum_path: float = 0
+    #         temp_path = list()
+    #         temp_path.append(src_id_curr)
+    #         while not pq.is_empty():
+    #             short_dist = self.shortest_path(src_id_curr, pq.peek())
+    #             sum_path += short_dist[0]
+    #             temp_path.append(pq.pop())
+    #         if sum_path < min_dist:
+    #             min_dist = sum_path
+    #             returned_path = temp_path
+    #     if min_dist == MAX_FLOAT:
+    #         return None, float('inf')
+    #     else:
+    #         return returned_path, min_dist
 
     def centerPoint(self) -> (int, float):
         if self.is_connected__():
@@ -272,8 +272,8 @@ class GraphAlgo:
                 center_node_id = curr_max_node_id
         return center_node_id, center_dist, center_li
 
-    def plot_graph(self) -> None:
-        plot_graph(self.my_graph)
+    # def plot_graph(self) -> None:
+    #     plot_graph(self.my_graph)
 
     def is_connected__(self):
         for src_id, src_node in self.my_graph.nodes.items():
