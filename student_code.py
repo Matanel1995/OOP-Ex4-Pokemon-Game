@@ -27,7 +27,7 @@ class Button:
         w_, h_ = pygame.display.get_surface().get_size()
         pygame.draw.rect(screen, self.color, (0, h_ - self.HIGHT, self.WITDH, self.HIGHT), 0)
         font_ = pygame.font.SysFont('comicsans', 12)
-        text = font_.render(self.text, 1, (255, 255, 255))
+        text = font_.render(self.text, True, (255, 255, 255))
         # screen.blit(text, (0 + (self.WITDH / 2 - text.get_width() / 2), h -self.HIGHT + ((h -self.HIGHT) +
         # self.HIGHT / 2 - text.get_height() / 2)))
         screen.blit(text, (0 + (self.WITDH / 2 - text.get_width() / 2), h_ - (self.HIGHT / 2 + text.get_height() / 2)))
@@ -49,27 +49,27 @@ pygame.init()
 screen = display.set_mode((WIDTH, HEIGHT), depth=32, flags=RESIZABLE)
 pygame.display.set_caption('Pokemon game!')
 # Loading all the images
-Background_img = pygame.image.load('Pokemon_Background.png')
-Pokeball_img = pygame.image.load('Pokeball.png').convert_alpha()
+Background_img = pygame.image.load('GUI/Pokemon_Background.png')
+Pokeball_img = pygame.image.load('GUI/Pokeball.png').convert_alpha()
 Pokeball_img = pygame.transform.scale(Pokeball_img, (radius, radius))
-Pokemon_Mester_img = pygame.image.load('Pokemon_Master.png').convert_alpha()
+Pokemon_Mester_img = pygame.image.load('GUI/Pokemon_Master.png').convert_alpha()
 Pokemon_Mester_img = pygame.transform.scale(Pokemon_Mester_img, (radius - 10, radius - 10))
 
 # Pokemons images
-Charizard_img = pygame.image.load('Charizard.png').convert_alpha()
+Charizard_img = pygame.image.load('GUI/Charizard.png').convert_alpha()
 Charizard_img = pygame.transform.scale(Charizard_img, (radius, radius))
-Eevee_img = pygame.image.load('eevee.jpeg').convert_alpha()
+Eevee_img = pygame.image.load('GUI/eevee.jpeg').convert_alpha()
 Eevee_img = pygame.transform.scale(Eevee_img, (radius - 10, radius - 10))
-Magickarp_img = pygame.image.load('magikarp.jpeg').convert_alpha()
-Magickarp_img = pygame.transform.scale(Magickarp_img, (radius - 10, radius - 10))
-Pikachu_img = pygame.image.load('pikachu.jpeg').convert_alpha()
+Magikarp_img = pygame.image.load('GUI/magikarp.jpeg').convert_alpha()
+Magikarp_img = pygame.transform.scale(Magikarp_img, (radius - 10, radius - 10))
+Pikachu_img = pygame.image.load('GUI/pikachu.jpeg').convert_alpha()
 Pikachu_img = pygame.transform.scale(Pikachu_img, (radius - 10, radius - 10))
-Snorlax_img = pygame.image.load('snorlax.jpeg').convert_alpha()
+Snorlax_img = pygame.image.load('GUI/snorlax.jpeg').convert_alpha()
 Snorlax_img = pygame.transform.scale(Snorlax_img, (radius - 10, radius - 10))
-Squirtle_img = pygame.image.load('squirtle.jpeg').convert_alpha()
+Squirtle_img = pygame.image.load('GUI/squirtle.jpeg').convert_alpha()
 Squirtle_img = pygame.transform.scale(Squirtle_img, (radius - 10, radius - 10))
 
-my_pokemons = [Charizard_img, Eevee_img, Magickarp_img, Pikachu_img, Snorlax_img, Squirtle_img]
+my_pokemons = [Charizard_img, Eevee_img, Magikarp_img, Pikachu_img, Snorlax_img, Squirtle_img]
 
 clock = pygame.time.Clock()
 pygame.font.init()
