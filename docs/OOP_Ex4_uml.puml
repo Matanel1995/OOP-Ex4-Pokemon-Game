@@ -94,23 +94,33 @@ class py_api{
 -move()
 }
 
-class Pokémon{
-+int: id
-+str: pok_name
+class Pokemon{
 +float: value
-+int: type
++int: type_
 +tuple[float]: pos
-+int: my_agent
-}
-
-class agent{
-+int: id
-+float: value
++int: x_pos
++int: y_pos
++int: z_pos
 +int: src
 +int: dest
++bool: is_aget_allocated
++curr_edge
++dist_pokemon_node(node: Node): float
+
+}
+
+class Agent{
++int: id
++float: value
 +float: speed
 +tuple[float]: pos
++int: x_pos
++int: y_pos
++int: z_pos
++int: src
++int: dest
 +next_Pokémon
++list: path
 }
 
 object GameAlgo{
