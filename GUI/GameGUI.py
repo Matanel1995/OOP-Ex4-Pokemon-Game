@@ -50,6 +50,9 @@ def get_graph(graph_str):
     return graph_a
 
 
+graph_str = 'data/A0'
+
+
 def main():
     clock = pygame.time.Clock()
     pygame.font.init()
@@ -60,8 +63,9 @@ def main():
     pygame.display.set_caption("Ex4 - gotta catch 'em all!")
     monitor_size = [pygame.display.Info().current_w, pygame.display.Info().current_h]
     mx, my = pygame.mouse.get_pos()
-
     stop_button = Button(screen.get_width() - 5 - (screen.get_width() / 5), 50, 100, 40, 'STOP')
+
+    graph = get_graph(graph_str)
 
     while run:
         screen.fill(WHITE)
