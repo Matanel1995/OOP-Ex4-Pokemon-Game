@@ -1,6 +1,3 @@
-from Pokemon import *
-
-
 class Agent:
     def __init__(self, id_: int = -1, value_: float = -1, src_: int = -1, dst_: int = -1,
                  speed_: float = -1, pos_: tuple[float] = (-1, -1, -1)):

@@ -1,6 +1,6 @@
 from heapq import *
 
-import Pokemon
+from Classes.Pokemon import *
 
 
 class PQByPokemon(object):

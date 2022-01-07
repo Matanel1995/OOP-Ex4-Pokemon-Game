@@ -3,7 +3,7 @@ from heapq import *
 from dataclasses import dataclass, field
 from typing import Any
 
-import Node
+from Ex3Files.Node import *
 
 
 class PQ(object):

@@ -2,7 +2,7 @@ import random
 
 import json
 
-from Node import *
+from Ex3Files.Node import *
 
 
 def st_edge(src: int, dest: int):
