@@ -40,5 +40,5 @@ class PQByPokemon(object):
     def peek_src(self) -> int:
         return self.Q[2].src
 
-    def peek_dest(self) -> int:
-        return self.Q[2].dest
+    def peek_dst(self) -> int:
+        return self.Q[2].dst

@@ -113,16 +113,22 @@ class agent{
 +next_Pokémon
 }
 
-object GameServer{
-+int: Pokémon_num
-+bool: is_logged_in
-+int: moves
-+int: grade
-+int: game_level
-+int: max_user_level
-+int: id
-+str: graph
-+int: agents
+object GameAlgo{
++DiGraph: graph
++PQByPokemon: pokemons
++dict: agents
++update_game(pokemons_json: str, agents_json: str, graph_json: str)
++init_pokemons(pokemon_json: str)
++init_graph(graph_json: str)
++init_agents(agents_json: str)
++choose_agent()
++time_to_poke(agent_id: int, poke_src: int): float
++find_pok_src_dst(pokemon: Pokemon)
++all_poke_src_dst()
++cmd(client: Client)
++allocate_all_agents()
++beginning_of_the_game(client: Client)
++game_algorithm(client: Client)
 }
 
 object client{
