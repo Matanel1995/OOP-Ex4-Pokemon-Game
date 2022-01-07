@@ -36,14 +36,17 @@ class PQByPokemon(object):
     def peek(self) -> tuple:
         return self.Q[0]
 
+    def peek_pokemon(self) -> Pokemon:
+        return self.Q[0][2]
+
     def peek_val(self) -> float:
-        return self.Q[0].value
+        return self.Q[0][2].value
 
     def peek_pos(self) -> tuple:
-        return self.Q[0].pos
+        return self.Q[0][2].pos
 
     def peek_src(self) -> int:
-        return self.Q[0].src
+        return self.Q[0][2].src
 
     def peek_dst(self) -> int:
-        return self.Q[0].dst
+        return self.Q[0][2].dst
