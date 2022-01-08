@@ -51,12 +51,17 @@ The goal is to collect as many Pokemons within the given time , and do not excee
 ![GUI](https://user-images.githubusercontent.com/92520981/148656038-2a4c3401-5eab-4f0d-8cdd-070f9b909ae3.png)</br>
 
 
+## Uml
+![UML](https://user-images.githubusercontent.com/92520981/148657249-f2a48245-f3d3-4af0-85a8-a69287696615.jpeg)</br>
+
+
 ## Previous project
 All the function we used that related to the graph such as 
 * shortest path
 * initialize graph
 * and more
-can be found here with more explanation : [Ex3-OOP-Graph](https://github.com/RF555/OOP_Ex3)
+can be found here with more explanation : [Ex3-OOP-Graph](https://github.com/RF555/OOP_Ex3)<br/>
+
 ## How to run:
 to use the jar file use command (0 &le; i &le; 15):
 
