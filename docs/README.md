@@ -13,7 +13,7 @@ the cases are differ by:
 * different graph.
 </br>
 The goal is to collect as many Pokemons within the given time , and do not exceed 10 moves per second. </br>
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/jUZIhRmrDkA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 ## Main functions
 ### GameAlgo:
@@ -66,6 +66,7 @@ can be found here with more explanation : [Ex3-OOP-Graph](https://github.com/RF5
 ## Glimpse at the game </br>
 
 ![GUI](https://user-images.githubusercontent.com/76430709/148659372-9bbb97e1-31cb-40f0-8148-a1e75abdf52e.jpg)</br>
+
 
 
 ## How to run:
