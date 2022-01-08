@@ -65,7 +65,7 @@ can be found here with more explanation : [Ex3-OOP-Graph](https://github.com/RF5
 
 ## Glimpse at the game </br>
 
-![GUI](https://user-images.githubusercontent.com/92520981/148656038-2a4c3401-5eab-4f0d-8cdd-070f9b909ae3.png)</br>
+![GUI](https://user-images.githubusercontent.com/76430709/148659256-a2dce2e6-a891-4153-a964-773951181de8.jpg)</br>
 
 
 ## How to run:
