@@ -13,7 +13,7 @@ the cases are differ by:
 * different graph.
 </br>
 The goal is to collect as many Pokemons within the given time , and do not exceed 10 moves per second. </br>
-
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/jUZIhRmrDkA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Main functions
 ### GameAlgo:
