@@ -46,6 +46,12 @@ The goal is to collect as many Pokemons within the given time , and do not excee
 | def my_scale(self,data, x=False, y=False) | Scale the possition of object to Pixels value |
 </br>
 
+## Gready but smart
+In order to decided how to allocate agent to each Pokemon we used gready algorithm.</br>
+That mean that we allocate to each agent his "best" pokemon.</br>
+The way we choose the "best" pokemon for each agent is by the Pokemon value/Time to rach him, that done at the **value_per_time** function</br>
+in that way we make sure each agent will choose a Pokemon that will maximise our total points.</br>
+
 ## Glimpse at the game. </br>
 
 ![GUI](https://user-images.githubusercontent.com/92520981/148656038-2a4c3401-5eab-4f0d-8cdd-070f9b909ae3.png)</br>
