@@ -29,6 +29,11 @@ class Pokemon:
         distance = math.sqrt(x_param + y_param)
         return distance
 
+    def __str__(self):
+        return "{\"Pokemon\": \"value\": " + f"{float(self.value)}" + ", \"type\": " + f"{int(self.type)}" + \
+               ", \"pos\": \"" + f"{float(self.x_pos)}" + "," + f"{float(self.y_pos)}" + "," + f"{float(self.z_pos)}" \
+               + "\" }"
+
 
 def gen_pokemon(value: float, type_: int, x_: float, y_: float, z_: float) -> Pokemon:
     return Pokemon({"value": value, "type": type_, "pos": str(x_) + ',' + str(y_) + ',' + str(z_)})
