@@ -135,6 +135,9 @@ class GameAlgo:
         self.cmd(client)
         client.move()
 
+    def get_poke_list(self):
+        return self.pokemons.get_poke_list()
+
 
 PORT = 6666
 # server host (default localhost 127.0.0.1)

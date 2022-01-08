@@ -8,7 +8,7 @@ from GUI.Button import *
 
 FPS = 60
 radius = 40
-WIDTH, HEIGHT = 900, 500
+WIDTH, HEIGHT = 1080, 720
 # screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
 
 # Colors:

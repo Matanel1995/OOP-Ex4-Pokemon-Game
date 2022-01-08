@@ -50,3 +50,7 @@ class PQByPokemon(object):
 
     def peek_dst(self) -> int:
         return self.Q[0][2].dst
+
+    def get_poke_list(self):
+        """returns self.Q - a list of all the pokemons, NOT SORTED"""
+        return self.Q
