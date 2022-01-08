@@ -111,21 +111,21 @@ class TestGameAlgo(TestCase):
             self.assertEqual(agent_.speed, id + 1)
             self.assertEqual(agent_.pos, str(id) + "," + str(id) + ',' + str(0.0))
 
-    def test_allocate_all_agents(self):
-        self.fail()
-
-    def test_choose_agent(self):
-        self.fail()
-
-    def test_time_to_poke(self):
-        self.fail()
-
-    def test_find_pok_src_dst(self):
-        self.fail()
-
-    def test_find_dist_nodes(self):
-        self.fail()
-
-    def test_all_pok_src_dst(self):
-        self.fail()
+    # def test_allocate_all_agents(self):
+    #     self.fail()
+    #
+    # def test_choose_agent(self):
+    #     self.fail()
+    #
+    # def test_time_to_poke(self):
+    #     self.fail()
+    #
+    # def test_find_pok_src_dst(self):
+    #     self.fail()
+    #
+    # def test_find_dist_nodes(self):
+    #     self.fail()
+    #
+    # def test_all_pok_src_dst(self):
+    #     self.fail()
 
