@@ -1,28 +1,25 @@
+# OOP_Ex4 - Pokemon game
+
 ![Pokemon Banner](https://user-images.githubusercontent.com/92520981/148656000-f8f771b6-0acd-4469-99c0-8e37004294cd.jpg)
-
 ## Made by:
-
 * Roey Finegold -  https://github.com/RF555 <br />
 * Matanel Ohayon - https://github.com/Matanel1995 <br />
-
-## Introduction:
-
+## Introduction:          
 In this assignment we implemented a Pokemon game based on the previous assignments we had in this course.</br>
-In this game there are 16 cases witch the user can choose. the cases are differ by:
-
+In this game there are 16 cases witch the user can choose.
+the cases are differ by:
 * number of agents.
 * number of Pokemons.
 * different graph.
-  </br>
-  The goal is to collect as many Pokemons within the given time , and do not exceed 10 moves per second. </br>
+</br>
+The goal is to collect as many Pokemons within the given time , and do not exceed 10 moves per second. </br>
+
 
 ## Main functions
-
 ### GameAlgo:
-
 | Function name | Explanation |
 | ------------- | ------------- |
-| _init_(self) | initialize the game | 
+| __init__(self) | initialize the game | 
 | update_game(self, pokemons = None , agents = None, graph =None) | initialize the game with the given parameters|
 | allocate_all_agents(self) | Allocate for each agent a Pokemon to catch |
 | value_per_time(self , a:Agent) | Choose for each agent the best Pokemon for him  as function of value/time to reach|
@@ -34,11 +31,11 @@ In this game there are 16 cases witch the user can choose. the cases are differ 
 | begining_of_the_game(self, Client:Client) | Initialize what requierd for the game  |
 | game_algorithm(self,Client:Client) | Run all the required function for the game to run | 
 
-### GameGUI:
 
+### GameGUI:
 | Function name | Explanation |
 | ------------- | ------------- |
-| _init_(self, game) | initialize the GUI |
+| __init__(self, game) | initialize the GUI |
 | init_screen(self) | Initilize all the object needed to be shown in the screen |
 | update_gui(self,game:GameAlgo ,Client:Client) | Update the Pokemon and agents as the game run |
 | draw_nodes(self): | Draw on the screen all the nodes |
@@ -47,27 +44,31 @@ In this game there are 16 cases witch the user can choose. the cases are differ 
 | draw_pokemon(self) | Draw on the screen all the Pokemons |
 | scale(self, data, min_screen, max_screen, min_data, max_data) | Scale the possition of object to Pixels value |
 | def my_scale(self,data, x=False, y=False) | Scale the possition of object to Pixels value |
-
 </br>
+
+## Gready but smart
+In order to decided how to allocate agent to each Pokemon we used gready algorithm.</br>
+That mean that we allocate to each agent his "best" pokemon.</br>
+The way we choose the "best" pokemon for each agent is by the Pokemon value/Time to rach him, that done at the **value_per_time** function</br>
+in that way we make sure each agent will choose a Pokemon that will maximise our total points.</br>
 
 ## Glimpse at the game. </br>
 
 ![GUI](https://user-images.githubusercontent.com/92520981/148656038-2a4c3401-5eab-4f0d-8cdd-070f9b909ae3.png)</br>
 
-## Uml
 
+## Uml
 ![UML](https://user-images.githubusercontent.com/92520981/148657249-f2a48245-f3d3-4af0-85a8-a69287696615.jpeg)</br>
 
+
 ## Previous project
-
-All the function we used that related to the graph such as
-
+All the function we used that related to the graph such as 
 * shortest path
 * initialize graph
-* and more can be found here with more explanation : [Ex3-OOP-Graph](https://github.com/RF555/OOP_Ex3)<br/>
+* and more
+can be found here with more explanation : [Ex3-OOP-Graph](https://github.com/RF555/OOP_Ex3)<br/>
 
 ## How to run:
-
 to use the jar file use command (0 &le; i &le; 15):
 
 java -jar Ex4_Server_v0.0.jar i

@@ -8,7 +8,8 @@ from client import Client
 
 
 def main():
-    subprocess.Popen(['powershell.exe', f'java -jar Ex4_Server_v0.0.jar {0}'])
+    case= input("choose case: ")
+    subprocess.Popen(['powershell.exe', f'java -jar Ex4_Server_v0.0.jar {case}'])
     PORT = 6666
     # server host (default localhost 127.0.0.1)
     HOST = '127.0.0.1'
