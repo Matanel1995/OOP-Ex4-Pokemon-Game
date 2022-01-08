@@ -5,12 +5,11 @@ import time
 
 import GameGUI as GameGUI
 from client import Client
-from Classes import Pokemon
 from Classes import Agent
 from Ex3Files import DiGraph
 from Ex3Files import Node
 from Ex3Files import GraphAlgo
-from Ex3Files.PPQ import *
+from Classes.PPQ import *
 
 Epsilon = 0.00000001
 
