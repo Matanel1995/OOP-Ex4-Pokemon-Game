@@ -1,11 +1,14 @@
+#!/usr/bin/env python
+import sys
 from time import sleep
 import GameGUI as GameGUI
-from pygame import *
+import subprocess
 import GameAlgo as GameAlgo
 from client import Client
 
 
 def main():
+    subprocess.Popen(['powershell.exe', f'java -jar Ex4_Server_v0.0.jar {0}'])
     PORT = 6666
     # server host (default localhost 127.0.0.1)
     HOST = '127.0.0.1'
@@ -22,7 +25,6 @@ def main():
         gui.update_gui(game, MyClient)
         game.game_algorithm(MyClient)
         print(MyClient.time_to_end())
-        print(MyClient.get_pokemons())
         print(MyClient.get_info())
         sleep(0.05)
     MyClient.stop_connection()

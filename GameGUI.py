@@ -5,38 +5,38 @@ from Ex3Files.GraphAlgo import *
 from client import Client
 
 radius = 40
-black = (0,0,0)
-white =(255,255,255)
+black = (0, 0, 0)
+white = (255, 255, 255)
 
 WIDTH, HEIGHT = 1080, 720
 clock = pygame.time.Clock()
 
 
 class GameGui():
-
     pygame.init()
     pygame.display.set_caption("Pokemon: Catch the all!")
 
     def __init__(self, game):
-            self.game = game
-            self.pokemons = game.pokemons
-            self.agents = game.agents
-            self.graph = game.graph.get_graph()
-            self.nodes = self.graph.nodes.values()
-            self.edegs = self.graph.edges.values()
-            self.max_x = 0
-            self.max_y = 0
-            self.min_x = sys.float_info.max
-            self.min_y = sys.float_info.max
+        self.game = game
+        self.pokemons = game.pokemons
+        self.agents = game.agents
+        self.graph = game.graph.get_graph()
+        self.nodes = self.graph.nodes.values()
+        self.edegs = self.graph.edges.values()
+        self.max_x = 0
+        self.max_y = 0
+        self.min_x = sys.float_info.max
+        self.min_y = sys.float_info.max
+        # self.stop_Button = Button((0, 0, 255), 0, self.screen.get_height - 80, 100, 80, "Stop")
 
-            self.screen = pygame.display.set_mode((WIDTH, HEIGHT), depth=32, flags=RESIZABLE)
-            self.is_running = True
-            self.clock = pygame.time.Clock()
-            for node in self.nodes:
-                self.max_x = max(self.max_x, node.pos[0])
-                self.max_y = max(self.max_y, node.pos[1])
-                self.min_x = min(self.min_x, node.pos[0])
-                self.min_y = min(self.min_y, node.pos[1])
+        self.screen = pygame.display.set_mode((WIDTH, HEIGHT), depth=32, flags=RESIZABLE)
+        self.is_running = True
+        self.clock = pygame.time.Clock()
+        for node in self.nodes:
+            self.max_x = max(self.max_x, node.pos[0])
+            self.max_y = max(self.max_y, node.pos[1])
+            self.min_x = min(self.min_x, node.pos[0])
+            self.min_y = min(self.min_y, node.pos[1])
 
     def init_screen(self):
         Background_img = pygame.image.load('imgs\\Pokemon_Background.png')
@@ -45,8 +45,11 @@ class GameGui():
         self.screen.blit(Background_img, [0, 0])
         self.draw_nodes()
         self.draw_edegs()
+        w, h = pygame.display.get_surface().get_size()
+        self.stop_Button = Button((128, 128, 128), 0, h - 40, 100, 40, "Stop")
+        self.stop_Button.draw(self.screen)
 
-    def update_gui(self,game:GameAlgo ,Client:Client):
+    def update_gui(self, game: GameAlgo, Client: Client):
 
         data = json.loads(Client.get_info())["GameServer"]
 
@@ -83,10 +86,17 @@ class GameGui():
                 pygame.quit()
                 exit(0)
                 return False
+            if event.type == MOUSEBUTTONDOWN:
+                pos = pygame.mouse.get_pos()
+                if self.stop_Button.isOver(pos):
+                    Client.stop()
         self.draw_nodes()
         self.draw_edegs()
         self.draw_agent()
         self.draw_pokemon()
+        w, h = pygame.display.get_surface().get_size()
+        self.stop_Button = Button((128, 128, 128), 0, h - 40, 100, 40, "Stop")
+        self.stop_Button.draw(self.screen)
 
         display.update()
         clock.tick(60)
@@ -141,17 +151,16 @@ class GameGui():
         for a in agents.items():
             x = self.my_scale(float(a[1].x_pos), x=True)
             y = self.my_scale(float(a[1].y_pos), y=True)
-            self.screen.blit(Pokemon_Mester_img, (int(x) -10 , int(y) -10))
+            self.screen.blit(Pokemon_Mester_img, (int(x) - 10, int(y) - 10))
 
     def draw_pokemon(self):
         Charizard_img = pygame.image.load('imgs\\Charizard.png').convert_alpha()
         Charizard_img = pygame.transform.scale(Charizard_img, (radius, radius))
         pokemons = self.pokemons.Q
         for p in pokemons:
-            x = self.my_scale(float(p[2].x_pos) , x=True)
+            x = self.my_scale(float(p[2].x_pos), x=True)
             y = self.my_scale(float(p[2].y_pos), y=True)
             self.screen.blit(Charizard_img, (int(x) - 10, int(y) - 17))
-
 
     def scale(self, data, min_screen, max_screen, min_data, max_data):
         """
@@ -160,10 +169,35 @@ class GameGui():
         """
         return ((data - min_data) / (max_data - min_data)) * (max_screen - min_screen) + min_screen
 
-
     # decorate scale with the correct values
-    def my_scale(self,data, x=False, y=False):
+    def my_scale(self, data, x=False, y=False):
         if x:
             return self.scale(data, 50, self.screen.get_width() - 50, self.min_x, self.max_x)
         if y:
             return self.scale(data, 50, self.screen.get_height() - 50, self.min_y, self.max_y)
+
+
+class Button:
+
+    def __init__(self, color, x, y, Widht, Height, Text=' '):
+        self.color = color
+        self.x = x
+        self.y = y
+        self.Widht = Widht
+        self.Height = Height
+        self.Text = Text
+
+    def draw(self, screen):
+        pygame.draw.rect(screen, self.color, (self.x, self.y, self.Widht, self.Height), 0)
+        if self.Text != '':
+            font = pygame.font.SysFont('comicsans', 14)
+            text = font.render(self.Text, 1, (0, 0, 0))
+            screen.blit(text, (
+                self.x + (self.Widht / 2 - text.get_width() / 2), self.y + (self.Height / 2 - text.get_height() / 2)))
+
+    def isOver(self, pos):
+        # Pos is the mouse position or a tuple of (x,y) coordinates
+        if pos[0] > self.x and pos[0] < self.x + self.Widht:
+            if pos[1] > self.y and pos[1] < self.y + self.Height:
+                return True
+        return False
