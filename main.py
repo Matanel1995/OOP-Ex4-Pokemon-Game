@@ -12,7 +12,7 @@ def init_pokemons(pokemons):
 
 
 if __name__ == '__main__':
-    i0 = ' 11'
+    i0 = ' 15'
     os.system('java -jar Ex4_Server_v0.0.jar' + i0)
     # os.system('java -jar Ex4_Server_v0.0.jar 11')
     # p1 = Pokemon(1, 1, 1, 1, 1)

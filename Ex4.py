@@ -22,6 +22,7 @@ def main():
         gui.update_gui(game, MyClient)
         game.game_algorithm(MyClient)
         print(MyClient.time_to_end())
+        print(MyClient.get_pokemons())
         print(MyClient.get_info())
         sleep(0.05)
     MyClient.stop_connection()
