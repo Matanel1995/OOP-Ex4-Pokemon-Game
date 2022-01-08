@@ -5,13 +5,14 @@
 * Roey Finegold -  https://github.com/RF555 <br />
 * Matanel Ohayon - https://github.com/Matanel1995 <br />
 ## Introduction:          
-In this assiment we implemneted a Pokemon game based on the previus assingments we had in this course.</br>
+In this assignment we implemented a Pokemon game based on the previous assignments we had in this course.</br>
 In this game there are 16 cases witch the user can choose.
-ther cases are deffer by:
+the cases are differ by:
 * number of agents.
 * number of Pokemons.
 * different graph.
-The goal is to collect as many Pokemons whitin the given time , and do not exeed 10 moves per second. </br>
+</br>
+The goal is to collect as many Pokemons within the given time , and do not exceed 10 moves per second. </br>
 
 
 ## Main functions
@@ -45,10 +46,17 @@ The goal is to collect as many Pokemons whitin the given time , and do not exeed
 | def my_scale(self,data, x=False, y=False) | Scale the possition of object to Pixels value |
 </br>
 
-## Glimps at the game. </br>
+## Glimpse at the game. </br>
 
 ![GUI](https://user-images.githubusercontent.com/92520981/148656038-2a4c3401-5eab-4f0d-8cdd-070f9b909ae3.png)</br>
 
+
+## Previous project
+All the function we used that related to the graph such as 
+* shortest path
+* initialize graph
+* and more
+can be found here with more explanation : [Ex3-OOP-Graph](https://github.com/RF555/OOP_Ex3)
 ## How to run:
 to use the jar file use command (0 &le; i &le; 15):
 
