@@ -1,5 +1,6 @@
 # OOP_Ex4 - Pokemon game
 
+![Pokemon Banner](https://user-images.githubusercontent.com/92520981/148656000-f8f771b6-0acd-4469-99c0-8e37004294cd.jpg)
 ## Made by:
 * Roey Finegold -  https://github.com/RF555 <br />
 * Matanel Ohayon - https://github.com/Matanel1995 <br />
@@ -42,9 +43,13 @@ The goal is to collect as many Pokemons whitin the given time , and do not exeed
 | draw_pokemon(self) | Draw on the screen all the Pokemons |
 | scale(self, data, min_screen, max_screen, min_data, max_data) | Scale the possition of object to Pixels value |
 | def my_scale(self,data, x=False, y=False) | Scale the possition of object to Pixels value |
+</br>
 
+## Glimps at the game. </br>
 
+![GUI](https://user-images.githubusercontent.com/92520981/148656038-2a4c3401-5eab-4f0d-8cdd-070f9b909ae3.png)</br>
 
+## How to run:
 to use the jar file use command (0 &le; i &le; 15):
 
 java -jar Ex4_Server_v0.0.jar i
