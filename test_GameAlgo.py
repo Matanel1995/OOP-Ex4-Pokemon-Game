@@ -1,6 +1,7 @@
 from unittest import TestCase
 
 
+
 class TestGameAlgo(TestCase):
 
     def test_init_pokemons(self):

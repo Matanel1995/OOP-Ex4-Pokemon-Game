@@ -1,20 +1,15 @@
 import math
 from Ex3Files.Node import Node
 
-default_pokemon: dict = {"value": -1, "type": 0, "pos": "-1,-1,0"}
-
 
 class Pokemon:
-    def __init__(self, pokemon_info=None):
-        if pokemon_info is None:
-            pokemon_info = default_pokemon
+    def __init__(self, pokemon_info: dict):
         self.value = float(pokemon_info['value'])
         self.type = int(pokemon_info['type'])
         self.pos = str(pokemon_info['pos'])
         split_pos = self.pos.split(',')
-        self.x_pos = float(split_pos[0])
-        self.y_pos = float(split_pos[1])
-        self.z_pos = float(split_pos[2])
+        self.x_pos = split_pos[0]
+        self.y_pos = split_pos[1]
         # SRC and DST values making it easy in the algo set for None for now
         self.src = None
         self.dst = None
@@ -29,11 +24,6 @@ class Pokemon:
         distance = math.sqrt(x_param + y_param)
         return distance
 
-    def __str__(self):
-        return "{\"Pokemon\": \"value\": " + f"{float(self.value)}" + ", \"type\": " + f"{int(self.type)}" + \
-               ", \"pos\": \"" + f"{float(self.x_pos)}" + "," + f"{float(self.y_pos)}" + "," + f"{float(self.z_pos)}" \
-               + "\" }"
 
-
-def gen_pokemon(value: float, type_: int, x_: float, y_: float, z_: float) -> Pokemon:
-    return Pokemon({"value": value, "type": type_, "pos": str(x_) + ',' + str(y_) + ',' + str(z_)})
+def gen_pokemon(value: float, type_: int, x_: float, y_: float) -> Pokemon:
+    return Pokemon({"value": value, "type": type_, "pos": str(x_) + ',' + str(y_)})
