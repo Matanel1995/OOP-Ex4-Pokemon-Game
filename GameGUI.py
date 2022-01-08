@@ -39,7 +39,7 @@ class GameGui():
                 self.min_y = min(self.min_y, node.pos[1])
 
     def init_screen(self):
-        Background_img = pygame.image.load('Pokemon_Background.png')
+        Background_img = pygame.image.load('imgs/Pokemon_Background.png')
         w, h = pygame.display.get_surface().get_size()
         Background_img = pygame.transform.scale(Background_img, (w, h))
         self.screen.blit(Background_img, [0, 0])
@@ -71,7 +71,7 @@ class GameGui():
         textRect_OverallPoints.center = (75, 50)
         textRect_OverallPoints.left = 5
 
-        Background_img = pygame.image.load('Pokemon_Background.png')
+        Background_img = pygame.image.load('imgs/Pokemon_Background.png')
         w, h = pygame.display.get_surface().get_size()
         Background_img = pygame.transform.scale(Background_img, (w, h))
 
@@ -93,7 +93,7 @@ class GameGui():
         clock.tick(60)
 
     def draw_nodes(self):
-        Pokeball_img = pygame.image.load('Pokeball.png').convert_alpha()
+        Pokeball_img = pygame.image.load('imgs/Pokeball.png').convert_alpha()
         Pokeball_img = pygame.transform.scale(Pokeball_img, (radius, radius))
 
         # draw nodes
@@ -139,7 +139,7 @@ class GameGui():
                                  (src_x, src_y), (dst_x, dst_y))
 
     def draw_agent(self):
-        Pokemon_Mester_img = pygame.image.load('Pokemon_Master.png').convert_alpha()
+        Pokemon_Mester_img = pygame.image.load('imgs/Pokemon_Master.png').convert_alpha()
         Pokemon_Mester_img = pygame.transform.scale(Pokemon_Mester_img, (radius - 10, radius - 10))
         agents = self.game.agents
         for a in agents.items():
@@ -148,7 +148,7 @@ class GameGui():
             self.screen.blit(Pokemon_Mester_img, (int(x) -10 , int(y) -10))
 
     def draw_pokemon(self):
-        Charizard_img = pygame.image.load('Charizard.png').convert_alpha()
+        Charizard_img = pygame.image.load('imgs/Charizard.png').convert_alpha()
         Charizard_img = pygame.transform.scale(Charizard_img, (radius, radius))
         pokemons = self.pokemons.Q
         for p in pokemons:
