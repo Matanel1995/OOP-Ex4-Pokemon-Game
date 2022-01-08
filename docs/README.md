@@ -69,6 +69,9 @@ All the function we used that related to the graph such as
 can be found here with more explanation : [Ex3-OOP-Graph](https://github.com/RF555/OOP_Ex3)<br/>
 
 ## How to run:
-to use the jar file use command (0 &le; i &le; 15):
-
-java -jar Ex4_Server_v0.0.jar i
+* Clone the repository from this github 
+* opne CMD in the project directory
+* run this function
+* >pyhon3 Ex4.py
+* After that you will be rquired to insert case number , choose between 0 to 15 and press Enter
+![RunCMD](https://user-images.githubusercontent.com/92520981/148658653-4a375c93-5a26-49ad-ad73-d2b743841139.jpeg)
