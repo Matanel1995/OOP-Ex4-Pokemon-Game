@@ -1,7 +1,6 @@
 from Classes import Pokemon
 from heapq import *
 
-
 class PQByPokemon(object):
     def __init__(self):
         self.Q = list()

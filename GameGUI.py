@@ -39,13 +39,12 @@ class GameGui():
                 self.min_y = min(self.min_y, node.pos[1])
 
     def init_screen(self):
-        Background_img = pygame.image.load('imgs/Pokemon_Background.png')
+        Background_img = pygame.image.load('imgs\\Pokemon_Background.png')
         w, h = pygame.display.get_surface().get_size()
         Background_img = pygame.transform.scale(Background_img, (w, h))
         self.screen.blit(Background_img, [0, 0])
         self.draw_nodes()
         self.draw_edegs()
-        #display.update()
 
     def update_gui(self,game:GameAlgo ,Client:Client):
 
@@ -71,7 +70,7 @@ class GameGui():
         textRect_OverallPoints.center = (75, 50)
         textRect_OverallPoints.left = 5
 
-        Background_img = pygame.image.load('imgs/Pokemon_Background.png')
+        Background_img = pygame.image.load('imgs\\Pokemon_Background.png')
         w, h = pygame.display.get_surface().get_size()
         Background_img = pygame.transform.scale(Background_img, (w, h))
 
@@ -93,7 +92,7 @@ class GameGui():
         clock.tick(60)
 
     def draw_nodes(self):
-        Pokeball_img = pygame.image.load('imgs/Pokeball.png').convert_alpha()
+        Pokeball_img = pygame.image.load('imgs\\Pokeball.png').convert_alpha()
         Pokeball_img = pygame.transform.scale(Pokeball_img, (radius, radius))
 
         # draw nodes
@@ -118,9 +117,6 @@ class GameGui():
             src = self.graph.nodes.get(src)
             for dst, w in node.edges_out.items():
                 # find the edge nodes
-                # GameGui.edge_iter(self.graph)
-                # src = next(n for n in self.nodes if n.id == e.src)
-                # dest = next(n for n in self.nodes if n.id == e.dest)
                 dst = self.graph.nodes.get(dst)
                 src_x, src_y, _ = str(src.pos).split(',')
                 src_x = src_x[1:]
@@ -139,7 +135,7 @@ class GameGui():
                                  (src_x, src_y), (dst_x, dst_y))
 
     def draw_agent(self):
-        Pokemon_Mester_img = pygame.image.load('imgs/Pokemon_Master.png').convert_alpha()
+        Pokemon_Mester_img = pygame.image.load('imgs\\Pokemon_Master.png').convert_alpha()
         Pokemon_Mester_img = pygame.transform.scale(Pokemon_Mester_img, (radius - 10, radius - 10))
         agents = self.game.agents
         for a in agents.items():
@@ -148,7 +144,7 @@ class GameGui():
             self.screen.blit(Pokemon_Mester_img, (int(x) -10 , int(y) -10))
 
     def draw_pokemon(self):
-        Charizard_img = pygame.image.load('imgs/Charizard.png').convert_alpha()
+        Charizard_img = pygame.image.load('imgs\\Charizard.png').convert_alpha()
         Charizard_img = pygame.transform.scale(Charizard_img, (radius, radius))
         pokemons = self.pokemons.Q
         for p in pokemons:
@@ -171,11 +167,3 @@ class GameGui():
             return self.scale(data, 50, self.screen.get_width() - 50, self.min_x, self.max_x)
         if y:
             return self.scale(data, 50, self.screen.get_height() - 50, self.min_y, self.max_y)
-
-
-def main(game: GameAlgo):
-    gui = GameGui(game)
-
-
-if __name__ == "__main__":
-    main()
