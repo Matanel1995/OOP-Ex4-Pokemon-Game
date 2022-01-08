@@ -52,12 +52,7 @@ That mean that we allocate to each agent his "best" pokemon.</br>
 The way we choose the "best" pokemon for each agent is by the Pokemon value/Time to rach him, that done at the **value_per_time** function</br>
 in that way we make sure each agent will choose a Pokemon that will maximise our total points.</br>
 
-## Glimpse at the game. </br>
-
-![GUI](https://user-images.githubusercontent.com/92520981/148656038-2a4c3401-5eab-4f0d-8cdd-070f9b909ae3.png)</br>
-
-
-## Uml
+## UML
 ![UML](https://user-images.githubusercontent.com/92520981/148657249-f2a48245-f3d3-4af0-85a8-a69287696615.jpeg)</br>
 
 
@@ -67,6 +62,11 @@ All the function we used that related to the graph such as
 * initialize graph
 * and more
 can be found here with more explanation : [Ex3-OOP-Graph](https://github.com/RF555/OOP_Ex3)<br/>
+
+## Glimpse at the game </br>
+
+![GUI](https://user-images.githubusercontent.com/92520981/148656038-2a4c3401-5eab-4f0d-8cdd-070f9b909ae3.png)</br>
+
 
 ## How to run:
 * Clone the repository from this github 
