@@ -1,7 +1,12 @@
 import
 @startuml
 
-Pokemon --> Pokemon_PQ
+Agent --> GameAlgo
+Pokemon -> Pokemon_PQ
+Pokemon --> GameAlgo
+GameAlgo <-> GameGUI
+GameAlgo <--> client
+GameGUI <--> client
 
 
 class Pokemon{
@@ -53,15 +58,35 @@ object GameAlgo{
 +choose_agent()
 +time_to_poke(agent_id: int, poke_src: int): float
 +find_pok_src_dst(pokemon: Pokemon)
-+all_poke_src_dst()
-+cmd(client: Client)
++all_pok_src_dst()
++CMD(client: Client)
 +allocate_all_agents()
-+beginning_of_the_game(client: Client)
++begining_of_the_game(client: Client)
 +game_algorithm(client: Client)
 }
 
 class GameGUI{
-+f
++game: GameAlgo
++pokemons
++agents
++graph
++nodes
++edgs
++max_x
++max_y
++min_x
++min_y
++screen
++is_running
++clock
++init_screen()
++update_gui(game:GameAlgo, Client)
++draw_nodes()
++draw_edegs()
++darw_agent()
++draw_pokemon()
++scale(data, min_screen, max_screen, min_data, max_data)
++my_scale(data, x, y)
 }
 
 
