@@ -3,7 +3,10 @@ from collections import deque
 from itertools import permutations
 from typing import List
 
+from Ex3Files import GraphAlgoInterface
+from Ex3Files import GraphInterface
 from Ex3Files.DiGraph import *
+#from src.GUI_PyGame import plot_graph
 from Ex3Files.Node import *
 from Ex3Files.PQ import *
 
@@ -12,7 +15,7 @@ def st_path(src: int, dest: int):
     return src.__str__() + "to" + dest.__str__()
 
 
-class GraphAlgo:
+class GraphAlgo():
     paths: dict
 
     def __init__(self, g=DiGraph()):
@@ -22,11 +25,13 @@ class GraphAlgo:
     def set_my_graph(self, new_graph: DiGraph):
         self.my_graph = new_graph
 
-    def get_graph(self) -> DiGraph:
+    def get_graph(self) -> GraphInterface:
         return self.my_graph
 
-    def load_from_json(self, file_name: Any) -> bool:
+    def load_from_json(self, file_name: str) -> bool:
         try:
+            #f = open(file_name)
+            #data = json.load(f)
             self.my_graph.edgesNum = 0
             self.my_graph.nodesNum = 0
             self.my_graph.mc = 0
@@ -50,20 +55,21 @@ class GraphAlgo:
                             temp_w: float = 0
                         self.my_graph.add_edge(temp_src, temp_dest, temp_w)
                         self.my_graph.mc = 0
+            #f.close()
             return True
         except FileNotFoundError:
             print("No such file, please check your files and location")
 
-    # def save_to_json(self, file_name: str) -> bool:
-    #     json_file = json.loads(self.my_graph.__str__())
-    #     with open(file_name, 'w') as output_file:
-    #         json.dump(json_file, output_file, indent=2)
-    #     load_json = GraphAlgo()
-    #     load_json.load_from_json(file_name)
-    #     if self.my_graph.__str__() == load_json.my_graph.__str__():
-    #         return True
-    #     else:
-    #         return False
+    def save_to_json(self, file_name: str) -> bool:
+        json_file = json.loads(self.my_graph.__str__())
+        with open(file_name, 'w') as output_file:
+            json.dump(json_file, output_file, indent=2)
+        load_json = GraphAlgo()
+        load_json.load_from_json(file_name)
+        if self.my_graph.__str__() == load_json.my_graph.__str__():
+            return True
+        else:
+            return False
 
     def shortest_path(self, id1: int, id2: int) -> (float, list):
         """The distance of the path, a list of the nodes ids that the path goes through
@@ -190,94 +196,94 @@ class GraphAlgo:
                     returned_path = curr_path
         return returned_path, min_dist
 
-    # def tsp2(self, node_lst: List[int]) -> (List[int], float):
-    #     min_ = MAX_FLOAT
-    #     returned_path = list()
-    #     for src_id, src_node in self.my_graph.nodes.items():
-    #         self.diakstra(src_id)
-    #         pq = PQ()
-    #         for dest_id in node_lst:
-    #             if dest_id != src_id:
-    #                 temp_n = Node(dest_id)
-    #                 temp_n.set_node_weight(self.get_node_w(dest_id))
-    #                 pq.add(temp_n)
-    #         sum_ = 0
-    #         temp_path = list()
-    #         temp_curr_id = src_id
-    #         temp_curr_tuple = (src_id, 0)
-    #         temp_path.append(temp_curr_id)
-    #         while not pq.is_empty():
-    #             sum_ += self.shortest_path(temp_curr_id, pq.peek()[1])[0]
-    #             temp_curr_id = pq.peek()[1]
-    #             temp_path.append(pq.pop()[1])
-    #         if sum_ < min_:
-    #             min_ = sum_
-    #             returned_path = temp_path
-    #     return returned_path, min
+    def tsp2(self, node_lst: List[int]) -> (List[int], float):
+        min_ = MAX_FLOAT
+        returned_path = list()
+        for src_id, src_node in self.my_graph.nodes.items():
+            self.diakstra(src_id)
+            pq = PQ()
+            for dest_id in node_lst:
+                if dest_id != src_id:
+                    temp_n = Node.Node(dest_id)
+                    temp_n.set_node_weight(self.get_node_w(dest_id))
+                    pq.add(temp_n)
+            sum = 0
+            temp_path = list()
+            temp_curr_id = src_id
+            temp_curr_tuple = (src_id, 0)
+            temp_path.append(temp_curr_id)
+            while not pq.is_empty():
+                sum += self.shortest_path(temp_curr_id, pq.peek()[1])[0]
+                temp_curr_id = pq.peek()[1]
+                temp_path.append(pq.pop()[1])
+            if sum < min_:
+                min_ = sum
+                returned_path = temp_path
+        return returned_path, min
 
     #   OG tsp
-    # def og_tsp(self, node_lst: List[int]) -> (List[int], float):
-    #     min_dist = MAX_FLOAT
-    #     returned_path = list()
-    #     for src_id_curr in node_lst:
-    #         pq = PQ()
-    #         for dest_id_curr in node_lst:
-    #             if dest_id_curr != src_id_curr:
-    #                 temp_node = Node(dest_id_curr)
-    #                 short_dist = self.shortest_path(src_id_curr, dest_id_curr)
-    #                 temp_node.set_node_weight(short_dist[0])
-    #                 pq.add(temp_node)
-    #         sum_path: float = 0
-    #         temp_path = list()
-    #         temp_path.append(src_id_curr)
-    #         while not pq.is_empty():
-    #             short_dist = self.shortest_path(src_id_curr, pq.peek())
-    #             sum_path += short_dist[0]
-    #             temp_path.append(pq.pop())
-    #         if sum_path < min_dist:
-    #             min_dist = sum_path
-    #             returned_path = temp_path
-    #     if min_dist == MAX_FLOAT:
-    #         return None, float('inf')
-    #     else:
-    #         return returned_path, min_dist
+    def og_tsp(self, node_lst: List[int]) -> (List[int], float):
+        min_dist = MAX_FLOAT
+        returned_path = list()
+        for src_id_curr in node_lst:
+            pq = PQ()
+            for dest_id_curr in node_lst:
+                if dest_id_curr != src_id_curr:
+                    temp_node = Node.Node(dest_id_curr)
+                    short_dist = self.shortest_path(src_id_curr, dest_id_curr)
+                    temp_node.set_node_weight(short_dist[0])
+                    pq.add(temp_node)
+            sum_path: float = 0
+            temp_path = list()
+            temp_path.append(src_id_curr)
+            while not pq.is_empty():
+                short_dist = self.shortest_path(src_id_curr, pq.peek())
+                sum_path += short_dist[0]
+                temp_path.append(pq.pop())
+            if sum_path < min_dist:
+                min_dist = sum_path
+                returned_path = temp_path
+        if min_dist == MAX_FLOAT:
+            return None, float('inf')
+        else:
+            return returned_path, min_dist
 
-    # def centerPoint(self) -> (int, float):
-    #     if self.is_connected__():
-    #         tup = self.center_point_help()
-    #         return tup[0], tup[1]
-    #     else:
-    #         return None, float('inf')
+    def centerPoint(self) -> (int, float):
+        if self.is_connected__():
+            tup = self.center_point_help()
+            return tup[0], tup[1]
+        else:
+            return None, float('inf')
 
-    # def center_point_help(self) -> (int, float, list):
-    #     center_node_id: int = -1
-    #     center_dist: float = MAX_FLOAT
-    #     center_li = list()
-    #     for id1, node1 in self.my_graph.nodes.items():
-    #         self.diakstra(id1)
-    #         max_dist: float = -1
-    #         curr_max_node_id: int = -1
-    #         max_li = list()
-    #         for id2, node2 in self.my_graph.nodes.items():
-    #             w2 = self.get_node_w(id2)
-    #             if w2 < MAX_FLOAT:
-    #                 if w2 > max_dist and w2 != -1:
-    #                     max_dist = w2
-    #                     curr_max_node_id = id1
-    #                     max_li = self.get_prev_list(id1, id2)
-    #         if center_dist > max_dist:
-    #             center_dist = max_dist
-    #             center_li = max_li
-    #             center_node_id = curr_max_node_id
-    #     return center_node_id, center_dist, center_li
-    #
-    # # def plot_graph(self) -> None:
-    # #     plot_graph(self.my_graph)
-    #
-    # def is_connected__(self):
-    #     for src_id, src_node in self.my_graph.nodes.items():
-    #         for dest_id, dest_node in self.my_graph.nodes.items():
-    #             short_dist = self.shortest_path(src_id, dest_id)
-    #             if short_dist[0] == MAX_FLOAT or short_dist[0] == float('inf'):
-    #                 return False
-    #     return True
+    def center_point_help(self) -> (int, float, list):
+        center_node_id: int = -1
+        center_dist: float = MAX_FLOAT
+        center_li = list()
+        for id1, node1 in self.my_graph.nodes.items():
+            self.diakstra(id1)
+            max_dist: float = -1
+            curr_max_node_id: int = -1
+            max_li = list()
+            for id2, node2 in self.my_graph.nodes.items():
+                w2 = self.get_node_w(id2)
+                if w2 < MAX_FLOAT:
+                    if w2 > max_dist and w2 != -1:
+                        max_dist = w2
+                        curr_max_node_id = id1
+                        max_li = self.get_prev_list(id1, id2)
+            if center_dist > max_dist:
+                center_dist = max_dist
+                center_li = max_li
+                center_node_id = curr_max_node_id
+        return center_node_id, center_dist, center_li
+
+    #def plot_graph(self) -> None:
+        #plot_graph(self.my_graph)
+
+    def is_connected__(self):
+        for src_id, src_node in self.my_graph.nodes.items():
+            for dest_id, dest_node in self.my_graph.nodes.items():
+                short_dist = self.shortest_path(src_id, dest_id)
+                if short_dist[0] == MAX_FLOAT or short_dist[0] == float('inf'):
+                    return False
+        return True

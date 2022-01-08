@@ -146,7 +146,7 @@ object client{
 -__send_message(msg)
 -get_agents()
 -add_agent(json_of_node)
--et_graph()
+-get_graph()
 -get_info()
 -get_pokemons()
 -is_running()

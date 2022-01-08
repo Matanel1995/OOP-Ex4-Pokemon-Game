@@ -1,7 +1,6 @@
 from Classes import Pokemon
 from heapq import *
 
-
 class PQByPokemon(object):
     def __init__(self):
         self.Q = list()
@@ -36,21 +35,6 @@ class PQByPokemon(object):
     def peek(self) -> tuple:
         return self.Q[0]
 
-    def peek_pokemon(self) -> Pokemon:
-        return self.Q[0][2]
-
-    def peek_val(self) -> float:
-        return self.Q[0][2].value
-
-    def peek_pos(self) -> tuple:
-        return self.Q[0][2].pos
-
-    def peek_src(self) -> int:
-        return self.Q[0][2].src
-
-    def peek_dst(self) -> int:
-        return self.Q[0][2].dst
-
-    def get_poke_list(self):
-        """returns self.Q - a list of all the pokemons, NOT SORTED"""
-        return self.Q
+    def reset(self):
+        self.Q.clear()
+        self.n = 0

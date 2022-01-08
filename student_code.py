@@ -12,30 +12,26 @@ from pygame import gfxdraw
 import pygame
 from pygame import *
 
-
 class Button:
-    def __init__(self, x, y, text):
-        self.x = x
-        self.y = y
+    def __init__(self ,x, y ,text):
+        self.x =x
+        self.y =y
         self.WITDH = 100
         self.HIGHT = 50
-        self.color = (0, 0, 0)
+        self.color = (0,0,0)
         self.text = text
 
     def draw(self):
-        # draw button to screen
-        w_, h_ = pygame.display.get_surface().get_size()
-        pygame.draw.rect(screen, self.color, (0, h_ - self.HIGHT, self.WITDH, self.HIGHT), 0)
-        font_ = pygame.font.SysFont('comicsans', 12)
-        text = font_.render(self.text, True, (255, 255, 255))
-        # screen.blit(text, (0 + (self.WITDH / 2 - text.get_width() / 2), h -self.HIGHT + ((h -self.HIGHT) +
-        # self.HIGHT / 2 - text.get_height() / 2)))
-        screen.blit(text, (0 + (self.WITDH / 2 - text.get_width() / 2), h_ - (self.HIGHT / 2 + text.get_height() / 2)))
-
+        #draw button to screen
+        w, h = pygame.display.get_surface().get_size()
+        pygame.draw.rect(screen,self.color,(0,h-self.HIGHT,self.WITDH,self.HIGHT),0)
+        font = pygame.font.SysFont('comicsans', 12)
+        text = font.render(self.text, 1, (255, 255, 255))
+        screen.blit(text,(0 + (self.WITDH / 2 - text.get_width() / 2), h - (self.HIGHT / 2 + text.get_height() / 2)))
 
 radius = 40
-black = (0, 0, 0)
-white = (255, 255, 255)
+black = (0,0,0)
+white =(255,255,255)
 
 # init pygame
 WIDTH, HEIGHT = 1080, 720
@@ -46,30 +42,32 @@ PORT = 6666
 HOST = '127.0.0.1'
 pygame.init()
 
+
 screen = display.set_mode((WIDTH, HEIGHT), depth=32, flags=RESIZABLE)
 pygame.display.set_caption('Pokemon game!')
-# Loading all the images
-Background_img = pygame.image.load('GUI/img_files/Pokemon_Background.png')
-Pokeball_img = pygame.image.load('GUI/img_files/Pokeball.png').convert_alpha()
-Pokeball_img = pygame.transform.scale(Pokeball_img, (radius, radius))
-Pokemon_Mester_img = pygame.image.load('GUI/img_files/Pokemon_Master.png').convert_alpha()
-Pokemon_Mester_img = pygame.transform.scale(Pokemon_Mester_img, (radius - 10, radius - 10))
+#Loading all the images
+Background_img = pygame.image.load('Pokemon_Background.png')
+Pokeball_img = pygame.image.load('Pokeball.png').convert_alpha()
+Pokeball_img = pygame.transform.scale(Pokeball_img,(radius,radius))
+Pokemon_Mester_img =pygame.image.load('Pokemon_Master.png').convert_alpha()
+Pokemon_Mester_img = pygame.transform.scale(Pokemon_Mester_img,(radius-10,radius-10))
 
-# Pokemons images
-Charizard_img = pygame.image.load('GUI/img_files/Charizard.png').convert_alpha()
-Charizard_img = pygame.transform.scale(Charizard_img, (radius, radius))
-Eevee_img = pygame.image.load('GUI/img_files/eevee.jpeg').convert_alpha()
-Eevee_img = pygame.transform.scale(Eevee_img, (radius - 10, radius - 10))
-Magikarp_img = pygame.image.load('GUI/img_files/magikarp.jpeg').convert_alpha()
-Magikarp_img = pygame.transform.scale(Magikarp_img, (radius - 10, radius - 10))
-Pikachu_img = pygame.image.load('GUI/img_files/pikachu.jpeg').convert_alpha()
-Pikachu_img = pygame.transform.scale(Pikachu_img, (radius - 10, radius - 10))
-Snorlax_img = pygame.image.load('GUI/img_files/snorlax.jpeg').convert_alpha()
-Snorlax_img = pygame.transform.scale(Snorlax_img, (radius - 10, radius - 10))
-Squirtle_img = pygame.image.load('GUI/img_files/squirtle.jpeg').convert_alpha()
-Squirtle_img = pygame.transform.scale(Squirtle_img, (radius - 10, radius - 10))
+#Pokemons images
+Charizard_img = pygame.image.load('Charizard.png').convert_alpha()
+Charizard_img = pygame.transform.scale(Charizard_img,(radius,radius))
+Eevee_img = pygame.image.load('eevee.jpeg').convert_alpha()
+Eevee_img = pygame.transform.scale(Eevee_img,(radius-10,radius-10))
+Magickarp_img = pygame.image.load('magikarp.jpeg').convert_alpha()
+Magickarp_img = pygame.transform.scale(Magickarp_img,(radius-10,radius-10))
+Pikachu_img = pygame.image.load('pikachu.jpeg').convert_alpha()
+Pikachu_img = pygame.transform.scale(Pikachu_img,(radius-10,radius-10))
+Snorlax_img = pygame.image.load('snorlax.jpeg').convert_alpha()
+Snorlax_img = pygame.transform.scale(Snorlax_img,(radius-10,radius-10))
+Squirtle_img = pygame.image.load('squirtle.jpeg').convert_alpha()
+Squirtle_img = pygame.transform.scale(Squirtle_img,(radius-10,radius-10))
 
-my_pokemons = [Charizard_img, Eevee_img, Magikarp_img, Pikachu_img, Snorlax_img, Squirtle_img]
+my_pokemons =[Charizard_img , Eevee_img ,Magickarp_img,Pikachu_img,Snorlax_img,Squirtle_img]
+
 
 clock = pygame.time.Clock()
 pygame.font.init()
@@ -94,32 +92,34 @@ for n in graph.Nodes:
     x, y, _ = n.pos.split(',')
     n.pos = SimpleNamespace(x=float(x), y=float(y))
 
-# get data proportions
-min_x = min(list(graph.Nodes), key=lambda n_: n_.pos.x).pos.x
-min_y = min(list(graph.Nodes), key=lambda n_: n_.pos.y).pos.y
-max_x = max(list(graph.Nodes), key=lambda n_: n_.pos.x).pos.x
-max_y = max(list(graph.Nodes), key=lambda n_: n_.pos.y).pos.y
+ # get data proportions
+min_x = min(list(graph.Nodes), key=lambda n: n.pos.x).pos.x
+min_y = min(list(graph.Nodes), key=lambda n: n.pos.y).pos.y
+max_x = max(list(graph.Nodes), key=lambda n: n.pos.x).pos.x
+max_y = max(list(graph.Nodes), key=lambda n: n.pos.y).pos.y
 
 # Creating button instance
 
-exit_button = Button(0, HEIGHT - 50, 'Stop')
+exit_button = Button(0, HEIGHT- 50, 'Stop')
 
 
-def scale(data_, min_screen, max_screen, min_data, max_data):
+def scale(data, min_screen, max_screen, min_data, max_data):
     """
     get the scaled data with proportions min_data, max_data
-    relative to min and max screen dimensions
+    relative to min and max screen dimentions
     """
-    return ((data_ - min_data) / (max_data - min_data)) * (max_screen - min_screen) + min_screen
+    return ((data - min_data) / (max_data-min_data)) * (max_screen - min_screen) + min_screen
 
 
 # decorate scale with the correct values
 
-def my_scale(data_, x_=False, y_=False):
-    if x_:
-        return scale(data_, 50, screen.get_width() - 50, min_x, max_x)
-    if y_:
-        return scale(data_, 50, screen.get_height() - 50, min_y, max_y)
+def my_scale(data, x=False, y=False):
+    if x:
+        return scale(data, 50, screen.get_width() - 50, min_x, max_x)
+    if y:
+        return scale(data, 50, screen.get_height()-50, min_y, max_y)
+
+
 
 
 client.add_agent("{\"id\":0}")
@@ -127,7 +127,7 @@ client.add_agent("{\"id\":1}")
 client.add_agent("{\"id\":2}")
 client.add_agent("{\"id\":3}")
 
-# this command starts the server - the game is running now
+# this commnad starts the server - the game is running now
 client.start()
 
 """
@@ -139,6 +139,8 @@ while client.is_running() == 'true':
 
     data = json.loads(client.get_info())["GameServer"]
 
+
+
     font = pygame.font.Font('freesansbold.ttf', 14)
     currTime = client.time_to_end()
     text_To_Finish = font.render('Time to finish: ' + str(int(currTime) / 1000) + ' sec.', True, black)
@@ -147,14 +149,14 @@ while client.is_running() == 'true':
     textRect_To_Finish.center = (90, 10)
     textRect_To_Finish.left = 5
 
-    text_Move = font.render('Moves : ' + str(data['moves']), True, black)
+    text_Move = font.render('Moves : ' + str(data['moves']) , True, black)
     textRect_Move = text_Move.get_rect()
     text_Move.set_alpha(127)
     textRect_Move.center = (41, 30)
     textRect_Move.left = 5
 
-    text_OverallPoints = font.render('Total points so far : ' + str(data['grade']), True, black)
-    textRect_OverallPoints = text_OverallPoints.get_rect()
+    text_OverallPoints = font.render('Total points so far : ' + str(data['grade']) , True, black)
+    textRect_OverallPoints= text_OverallPoints.get_rect()
     text_OverallPoints.set_alpha(127)
     textRect_OverallPoints.center = (75, 50)
     textRect_OverallPoints.left = 5
@@ -165,20 +167,22 @@ while client.is_running() == 'true':
     for p in pokemons:
         x, y, _ = p.pos.split(',')
         p.pos = SimpleNamespace(x=my_scale(
-            float(x), x_=True), y=my_scale(float(y), y_=True))
+            float(x), x=True), y=my_scale(float(y), y=True))
     agents = json.loads(client.get_agents(),
                         object_hook=lambda d: SimpleNamespace(**d)).Agents
     agents = [agent.Agent for agent in agents]
     for a in agents:
         x, y, _ = a.pos.split(',')
         a.pos = SimpleNamespace(x=my_scale(
-            float(x), x_=True), y=my_scale(float(y), y_=True))
+            float(x), x=True), y=my_scale(float(y), y=True))
+
 
     # check events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit(0)
+
 
     # refresh surface
     screen.fill(Color(0, 255, 0))
@@ -193,10 +197,10 @@ while client.is_running() == 'true':
 
     # draw nodes
     for n in graph.Nodes:
-        x = my_scale(n.pos.x, x_=True)
-        y = my_scale(n.pos.y, y_=True)
+        x = my_scale(n.pos.x, x=True)
+        y = my_scale(n.pos.y, y=True)
 
-        screen.blit(Pokeball_img, (int(x) - int(radius / 2), int(y) - int(radius / 2)))
+        screen.blit(Pokeball_img,(int(x)-int(radius /2) ,int(y)-int(radius/2)))
 
         # draw the node id
         id_srf = FONT.render(str(n.id), True, Color(0, 0, 230))
@@ -210,10 +214,10 @@ while client.is_running() == 'true':
         dest = next(n for n in graph.Nodes if n.id == e.dest)
 
         # scaled positions
-        src_x = my_scale(src.pos.x, x_=True)
-        src_y = my_scale(src.pos.y, y_=True)
-        dest_x = my_scale(dest.pos.x, x_=True)
-        dest_y = my_scale(dest.pos.y, y_=True)
+        src_x = my_scale(src.pos.x, x=True)
+        src_y = my_scale(src.pos.y, y=True)
+        dest_x = my_scale(dest.pos.x, x=True)
+        dest_y = my_scale(dest.pos.y, y=True)
 
         # draw the line
         pygame.draw.line(screen, Color(61, 72, 126),
@@ -221,12 +225,14 @@ while client.is_running() == 'true':
 
     # draw agents
     for agent in agents:
-        screen.blit(Pokemon_Mester_img, (int(agent.pos.x) - 10, int(agent.pos.y) - 10))
-    # draw pokemons (note: should differ (GUI wise) between the up and the down pokemons (currently they are marked
-    # in the same way).
+
+        screen.blit(Pokemon_Mester_img, (int(agent.pos.x) -10 , int(agent.pos.y) -10))
+    # draw pokemons (note: should differ (GUI wise) between the up and the down pokemons (currently they are marked in the same way).
     for p in pokemons:
-        # cuurPokemon = random.choice(my_pokemons)
-        screen.blit(Charizard_img, (int(p.pos.x) - 10, int(p.pos.y) - 17))
+        #cuurPokemon = random.choice(my_pokemons)
+        screen.blit(Charizard_img, (int(p.pos.x) -10 , int(p.pos.y) -17))
+
+
 
     # update screen changes
     display.update()
@@ -239,7 +245,7 @@ while client.is_running() == 'true':
         if agent.dest == -1:
             next_node = (agent.src - 1) % len(graph.Nodes)
             client.choose_next_edge(
-                '{"agent_id":' + str(agent.id) + ', "next_node_id":' + str(next_node) + '}')
+                '{"agent_id":'+str(agent.id)+', "next_node_id":'+str(next_node)+'}')
             ttl = client.time_to_end()
             print(ttl, client.get_info())
 

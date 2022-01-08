@@ -1,15 +1,16 @@
 import random
 
+from Ex3Files import GraphInterface
 import json
 
-from Ex3Files.Node import *
+from Ex3Files import Node
 
 
 def st_edge(src: int, dest: int):
     return src.__str__() + "to" + dest.__str__()
 
 
-class DiGraph:
+class DiGraph():
     nodes: dict = None
     edges: dict = None
     mc: int = None
@@ -60,9 +61,9 @@ class DiGraph:
             if pos is None:
                 x_coordinate: float = random.uniform(0, 1500)
                 y_coordinate: float = random.uniform(0, 900)
-                z_coordinate: float = random.uniform(0, MAX_FLOAT / 2)
+                z_coordinate: float = random.uniform(0, 1000000000 / 2)
                 pos = (x_coordinate, y_coordinate, z_coordinate)
-            temp = Node(node_id, pos)
+            temp = Node.Node(node_id, pos)
             self.nodes[temp.id] = temp
             self.nodesNum += 1
             if self.mc >= 0:
