@@ -25,5 +25,5 @@ class Pokemon:
         return distance
 
 
-def gen_pokemon(value: float, type_: int, x_: float, y_: float) -> Pokemon:
-    return Pokemon({"value": value, "type": type_, "pos": str(x_) + ',' + str(y_)})
+# def gen_pokemon(value: float, type_: int, x_: float, y_: float) -> Pokemon:
+#     return Pokemon({"value": value, "type": type_, "pos": str(x_) + ',' + str(y_)})

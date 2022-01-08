@@ -1,5 +1,11 @@
 from unittest import TestCase
 
+#  GRAPH PATH:
+A0_str = 'data\A0'
+A1_str = 'data\A1'
+A2_str = 'data\A2'
+A3_str = 'data\A3'
+# POKEMON PATH
 
 
 class TestGameAlgo(TestCase):

@@ -22,6 +22,6 @@ class Agent:
                + str(self.y_pos) + ',' + str(self.z_pos) + '"}'
 
 
-def gen_agent(id: int, value: float, src: int, dest: int, speed: float, x_: float, y_: float, z_: float) -> Agent:
-    return Agent({"id": id, "value": value, "src": src, "dest": dest, "speed": speed,
-                  "pos": str(x_) + ',' + str(y_) + ',' + str(z_)})
+# def gen_agent(id: int, value: float, src: int, dest: int, speed: float, x_: float, y_: float, z_: float) -> Agent:
+#     return Agent({"id": id, "value": value, "src": src, "dest": dest, "speed": speed,
+#                   "pos": str(x_) + ',' + str(y_) + ',' + str(z_)})
