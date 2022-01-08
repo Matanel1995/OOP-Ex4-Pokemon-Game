@@ -1,0 +1,112 @@
+import
+@startuml
+
+Agent --> GameAlgo
+Pokemon -> Pokemon_PQ
+Pokemon --> GameAlgo
+GameAlgo <-> GameGUI
+GameAlgo <--> client
+GameGUI <--> client
+
+
+class Pokemon{
++float: value
++int: type_
++tuple[float]: pos
++int: x_pos
++int: y_pos
++int: z_pos
++int: src
++int: dest
++bool: is_aget_allocated
++curr_edge
++dist_pokemon_node(node: Node): float
+}
+
+class Pokemon_PQ{
++list: Q
++int: n
++add(poke: Pokemon)
++pop()
++is_empty()
++peek()
++reset()
+}
+
+class Agent{
++int: id
++float: value
++float: speed
++tuple[float]: pos
++int: x_pos
++int: y_pos
++int: z_pos
++int: src
++int: dest
++next_pokemon
++list: path
+}
+
+object GameAlgo{
++DiGraph: graph
++PQByPokemon: pokemons
++dict: agents
++update_game(pokemons_json: str, agents_json: str, graph_json: str)
++init_pokemons(pokemon_json: str)
++init_graph(graph_json: str)
++init_agents(agents_json: str)
++choose_agent()
++time_to_poke(agent_id: int, poke_src: int): float
++find_pok_src_dst(pokemon: Pokemon)
++all_pok_src_dst()
++CMD(client: Client)
++allocate_all_agents()
++begining_of_the_game(client: Client)
++game_algorithm(client: Client)
+}
+
+class GameGUI{
++game: GameAlgo
++pokemons
++agents
++graph
++nodes
++edgs
++max_x
++max_y
++min_x
++min_y
++screen
++is_running
++clock
++init_screen()
++update_gui(game:GameAlgo, Client)
++draw_nodes()
++draw_edegs()
++darw_agent()
++draw_pokemon()
++scale(data, min_screen, max_screen, min_data, max_data)
++my_scale(data, x, y)
+}
+
+
+
+object client{
+-start_connection(ip, port)
+-__send_message(msg)
+-get_agents()
+-add_agent(json_of_node)
+-get_graph()
+-get_info()
+-get_pokemons()
+-is_running()
+-time_to_end()
+-start()
+-stop()
+-move()
+-choose_next_edge(next_agent_node_json)
+-log_in(id_str)
+-stop_connection()
+}
+
+@enduml

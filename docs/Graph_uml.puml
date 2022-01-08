@@ -1,0 +1,86 @@
+import
+@startuml
+
+
+class DiGraph{
++nods: dict
++edges: dict
++mc: int
++edgesNum: int
++nodesNum: int
+-v_size(): int
+-e_size(): int
+-get_all_v(): dict
+-all_in_edges_of_node(id1: int): dict
+-all_out_edges_of_node(id1: int): dict
+-get_mc(): int
+-add_edge(id1: int, id2: int, weight: float): bool
+-add_node(node_id: int, pos: tuple = None): bool
+-remove_node(node_id: int): bool
+-remove_edge(node_id1: int, node_id2: int): bool
++add__node(n: Node)
++edges_str(): str
++nodes_str(): str
++__str__()
+}
+
+class Node{
++id: int
++pos: tuple[float]
++tag: int
++prevNodeID: int
++edges_in: dict
++edges_out: dict
++node_weight_curr: float
++get_key(): int
++add_incoming_edge(src: int, w: float)
++add_outgoing_edge(dest: int, w: float)
++delete_node(node_id: int)
++delete_incoming_edge(src_id: int)
++delete_outgoing_edge(dest_id: int)
++set_node_weight(w: float)
++set_prev_node(prev_id: int)
++set_tag(tag: int)
++__str__()
+}
+
+class GraphAlgo{
++my_graph: DiGraph
+-get_graph(): GraphInterface
+-load_from_json(file_name: str): bool
+-save_to_json(file_name: str): bool
+-shortest_path(id1: int, id2: int): float, list
+-TSP(node_lst: List[int]): List[int], float
+-centerPoint(): int, float
+-plot_graph(): None
++set_my_graph(new_graph: DiGraph)
++diakstra(src: int):
++relax(src: int, dest: int)
++get_prev_list(src: int, dest: int): list
++get_node_w(id: int): float
++get_node(id: int): Node
+'+get_node_tag(id: int): int
+'+set_node_tag(id: int, tag)
+'+set_path_w(id: int, w: float)
++get_edge_w(src: int, dest: int): float
++get_prev_node(node_id: int): int
++set_prev_node(curr_id: int, prev_id: int)
++tsp_all_permutations(first_node: int, node_lst: list[int])
++center_point_help(): int, float, list
++is_connected__(): bool
+}
+
+class PQ{
++Q: list
++add(node: Node)
++pop()
++get_w)i: int): float
++get_id(i:int): int
++is_empty(): bool
++size(): int
++peek(): tuple
++__str__()
+}
+
+
+@enduml

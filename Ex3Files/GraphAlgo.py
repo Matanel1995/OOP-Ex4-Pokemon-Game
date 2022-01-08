@@ -3,8 +3,10 @@ from collections import deque
 from itertools import permutations
 from typing import List
 
+from Ex3Files import GraphAlgoInterface
+from Ex3Files import GraphInterface
 from Ex3Files.DiGraph import *
-from Ex3Files.GUI_PyGame import plot_graph
+#from src.GUI_PyGame import plot_graph
 from Ex3Files.Node import *
 from Ex3Files.PQ import *
 
@@ -13,7 +15,7 @@ def st_path(src: int, dest: int):
     return src.__str__() + "to" + dest.__str__()
 
 
-class GraphAlgo:
+class GraphAlgo():
     paths: dict
 
     def __init__(self, g=DiGraph()):
@@ -23,11 +25,13 @@ class GraphAlgo:
     def set_my_graph(self, new_graph: DiGraph):
         self.my_graph = new_graph
 
-    def get_graph(self) -> DiGraph:
+    def get_graph(self) -> GraphInterface:
         return self.my_graph
 
-    def load_from_json(self, file_name: Any) -> bool:
+    def load_from_json(self, file_name: str) -> bool:
         try:
+            #f = open(file_name)
+            #data = json.load(f)
             self.my_graph.edgesNum = 0
             self.my_graph.nodesNum = 0
             self.my_graph.mc = 0
@@ -51,6 +55,7 @@ class GraphAlgo:
                             temp_w: float = 0
                         self.my_graph.add_edge(temp_src, temp_dest, temp_w)
                         self.my_graph.mc = 0
+            #f.close()
             return True
         except FileNotFoundError:
             print("No such file, please check your files and location")
@@ -272,8 +277,8 @@ class GraphAlgo:
                 center_node_id = curr_max_node_id
         return center_node_id, center_dist, center_li
 
-    def plot_graph(self) -> None:
-        plot_graph(self.my_graph)
+    #def plot_graph(self) -> None:
+        #plot_graph(self.my_graph)
 
     def is_connected__(self):
         for src_id, src_node in self.my_graph.nodes.items():

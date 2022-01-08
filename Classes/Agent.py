@@ -1,15 +1,18 @@
+from Classes import Pokemon
+
+
 class Agent:
-    def __init__(self, id_: int = -1, value_: float = -1, src_: int = -1, dst_: int = -1,
-                 speed_: float = -1, pos_: tuple[float] = (-1, -1, -1)):
-        self.id: int = id_
-        self.value: float = value_
-        self.src: int = src_
-        self.dst: int = dst_
-        self.speed: float = speed_
-        self.pos = pos_
-        self.x_pos = self.pos[0]
-        self.y_pos = self.pos[1]
-        self.z_pos = self.pos[2]
+    def __init__(self, agent_info: dict):
+        self.id: int=int(agent_info['id'])
+        self.value: float=float(agent_info['value'])
+        self.src: int=int(agent_info['src'])
+        self.dst: int=int(agent_info['dest'])
+        self.speed: float=float(agent_info['speed'])
+        self.pos = str(agent_info['pos'])
+        split_pos = self.pos.split(',')
+        self.x_pos = split_pos[0]
+        self.y_pos = split_pos[1]
+        self.z_pos = split_pos[2]
         self.next_pokemon = None
         self.path: list = list()
 

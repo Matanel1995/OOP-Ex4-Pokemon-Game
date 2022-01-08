@@ -72,4 +72,3 @@ class Node:
         # st="{"+f"{self.id}"+": "+f"{self.id}"+": |edges"
 
         return st
-

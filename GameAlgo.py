@@ -1,109 +1,75 @@
-import time
+import json
+import math
+import sys
 
 from client import Client
-from Classes.Agent import *
-from Ex3Files.GraphAlgo import *
-from Classes.PQ_by_pokemon import *
+from Classes import Agent
+from Ex3Files import DiGraph
+from Ex3Files import Node
+from Ex3Files import GraphAlgo
+from Classes.PPQ import *
 
 Epsilon = 0.00000001
-
-
-def find_dist_nodes(node1: Node, node2: Node):
-    # Same formula to find dist between 2 nodes
-    delta_x = pow(node1.pos[0] - node2.pos[0], 2)
-    delta_y = pow(node1.pos[1] - node2.pos[1], 2)
-    return math.sqrt(delta_x + delta_y)
 
 
 class GameAlgo:
 
     def __init__(self):
-        self.graph: GraphAlgo = GraphAlgo()
-        self.pokemons: PQByPokemon = PQByPokemon()
-        self.agents: dict = dict()
+        self.graph = GraphAlgo.GraphAlgo()
+        self.pokemons = PQByPokemon()
+        self.agents = dict()
 
-    def update_game(self, pokemons_json: str, agents_json: str, graph_json):
-        if pokemons_json is not None:
-            self.init_pokemons(pokemons_json)
-        if agents_json is not None:
-            self.init_agents(agents_json)
-        if graph_json is not None:
-            self.init_graph(graph_json)
-        self.all_poke_src_dst()
+    def update_game(self, pokemons=None, agents=None, graph=None):
+        if pokemons != None:
+            self.init_pokemons(pokemons)
+        if agents != None:
+            self.init_agents(agents)
+        if graph != None:
+            self.init_graph(graph)
+        self.all_pok_src_dst()
 
-    def init_pokemons(self, pokemon_json: str):
-        pokemon_data = json.loads(pokemon_json)
-        if 'Pokemons' in pokemon_data:
-            for poke in pokemon_data['Pokemons']:
-                print(poke)
-                if 'value' in poke:
-                    value_: float = poke['value']
-                else:
-                    value_: float = -1
-                if 'type' in poke:
-                    type_: int = poke['type']
-                else:
-                    type_: int = 0
-                if 'pos' in poke:
-                    pos_ = tuple(map(float, poke['pos'].split(',')))
-                else:
-                    pos_ = (-1, -1, -1)
-                temp = Pokemon(value_, type_, pos_)
-                self.pokemons.add(temp)
+    def init_pokemons(self, pokemons):
+        self.pokemons.reset()
+        pokemon_obj = json.loads(pokemons)
+        for p in pokemon_obj['Pokemons']:
+            temp = Pokemon.Pokemon(p['Pokemon'])
+            self.pokemons.add(temp)
 
-    def init_graph(self, graph_json: str):
-        graph_obj = json.loads(graph_json)
-        my_graph = GraphAlgo()
-        my_graph.load_from_json(graph_obj)
-        self.graph = my_graph
+    def init_graph(self, graph):
+        graphObj = json.loads(graph)
+        myGraph = GraphAlgo.GraphAlgo()
+        myGraph.load_from_json(graphObj)
+        self.graph = myGraph
 
-    def init_agents(self, agents_json: str):
-        agents_data = json.loads(agents_json)
-        if 'Agents' in agents_data:
-            for a in agents_data['Agents']:
-                if 'id' in a:
-                    id_: int = a['id']
-                else:
-                    id_: int = -1
-                if 'value' in a:
-                    value_: float = a['value']
-                else:
-                    value_: float = -1
-                if 'src' in a:
-                    src_: int = a['src']
-                else:
-                    src_: int = -1
-                if 'dest' in a:
-                    dst_: int = a['dest']
-                else:
-                    dst_ = -1
-                if 'speed' in a:
-                    speed_: float = a['speed']
-                else:
-                    speed_ = -1
-                if 'pos' in a:
-                    pos_ = tuple(map(float, a['pos'].split(',')))
-                else:
-                    pos_ = None
-                temp = Agent(id_, value_, src_, dst_, speed_, pos_)
-                self.agents[temp.id] = temp
+    def init_agents(self, agents):
+        agentsObj = json.loads(agents)
+        for a in agentsObj['Agents']:
+            temp = Agent.Agent(a['Agent'])
+            self.agents[temp.id] = temp
+
+    def allocate_all_agents(self):
+        for a in self.agents.values():
+            if a.next_pokemon == None:
+                # self.choose_agent()
+                self.value_per_time(a)
 
     def choose_agent(self):
-        curr_poke = self.pokemons.pop()
-        min_dist = sys.float_info.max
-        chosen_agent = -1
+        currPoke = self.pokemons.pop()
+        minDist = sys.float_info.max
+        choosenAgent = -1
         for a in self.agents.values():
-            if a.next_pokemon is None:
-                temp_dist = self.time_to_poke(a.id, curr_poke.src)
-                if temp_dist < min_dist:
-                    min_dist = temp_dist
-                    chosen_agent = a.id
-        self.agents.get(chosen_agent).path = self.graph.shortest_path(self.agents.get(chosen_agent).src, curr_poke.src)[
-            1]
-        self.agents.get(chosen_agent).path.append(curr_poke.dst)
-        self.agents.get(chosen_agent).next_pokemon = 1
-        if chosen_agent != -1:
-            return chosen_agent
+            if a.next_pokemon == None:
+                tempDist = self.time_to_poke(a.id, currPoke.src)
+                if tempDist < minDist:
+                    minDist = tempDist
+                    choosenAgent = a.id
+            if choosenAgent != -1:
+                self.agents.get(choosenAgent).path = \
+                self.graph.shortest_path(self.agents.get(choosenAgent).src, currPoke.src)[1]
+                self.agents.get(choosenAgent).path.append(currPoke.dst)
+                self.agents.get(choosenAgent).path.pop(0)
+                self.agents.get(choosenAgent).next_pokemon = 1
+                return choosenAgent
         return None
 
     def time_to_poke(self, agent_id: int, poke_src: int) -> float:
@@ -112,110 +78,70 @@ class GameAlgo:
         return dist / agent.speed
 
     def find_pok_src_dst(self, pokemon: Pokemon):
-        """Finding on which edge the pokemon is and update the pokemon values"""
+        # Finding on which edge the pokemon is and update the pokemon values
         for node1 in self.graph.get_graph().nodes.values():
             for node2 in self.graph.get_graph().nodes.values():
-                node_dist = find_dist_nodes(node1, node2)
-                poke_dist = pokemon.dist_pokemon_node(node1) + pokemon.dist_pokemon_node(node2)
+                nodeDist = GameAlgo.find_dist_nodes(self, node1, node2)
+                PokeDist = pokemon[2].dist_pokemon_node(node1) + pokemon[2].dist_pokemon_node(node2)
                 # if the distances is almost equals
-                if abs(node_dist - poke_dist) <= Epsilon:
+                if abs(nodeDist - PokeDist) <= Epsilon:
                     # check the type in order to decide which one is SRC and which one is DST
-                    if pokemon.type_ == 1:  # DST  > SRC
+                    if pokemon[2].type == 1:  # DST  > SRC
                         src = min(int(node1.id), int(node2.id))
                         dst = max(int(node1.id), int(node2.id))
                     else:
                         src = max(int(node1.id), int(node2.id))
                         dst = min(int(node1.id), int(node2.id))
-                    # check if there is an edge between SRC and DST is so update pokemon values
-                    if st_edge(src, dst) in self.graph.get_graph().edges:
-                        pokemon.src = src
-                        pokemon.dst = dst
+                    # check if there is a edge between SRC and DST is so update pokemon values
+                    if DiGraph.st_edge(src, dst) in self.graph.get_graph().edges:
+                        pokemon[2].src = src
+                        pokemon[2].dst = dst
                         return
 
-    def all_poke_src_dst(self):
+    def find_dist_nodes(self, node1: Node, node2: Node):
+        # Same formula to find dist between 2 nodes
+        delta_x = pow(node1.pos[0] - node2.pos[0], 2)
+        delta_y = pow(node1.pos[1] - node2.pos[1], 2)
+        return math.sqrt(delta_x + delta_y)
+
+    def all_pok_src_dst(self):
         for pokemon in self.pokemons.Q:
             if pokemon[2].src is None and pokemon[2].dst is None:
                 GameAlgo.find_pok_src_dst(self, pokemon)
 
-    def cmd(self, client: Client):
+    def CMD(self, Client: Client):
         for a in self.agents.values():
             if a.dst == -1:
                 if a.path:
-                    client.choose_next_edge(
-                        '{"agent_id":' + str(a.id) + ', "next_node_id":' + str(a.path.pop(0)) + '}')
+                    Client.choose_next_edge('{"agent_id":' + str(a.id) + ', "next_node_id":' + str(a.path.pop(0)) + '}')
                     if not a.path:
                         a.next_pokemon = None
 
-    def allocate_all_agents(self):
-        for a in self.agents.values():
-            if a.next_pokemon is None:
-                self.choose_agent()
+    def begining_of_the_game(self, Client: Client):
+        self.init_pokemons(Client.get_pokemons())
+        self.init_graph(Client.get_graph())
+        self.all_pok_src_dst()
+        bla = Client.get_info()
+        blaObj = json.loads(bla)
+        for i in range(0, int(blaObj['GameServer']['agents'])):
+            Client.add_agent('{\"id\":' + str(str(self.pokemons.pop().src)) + '}')
 
-    def beginning_of_the_game(self, client: Client):
-        self.init_pokemons(client.get_pokemons())
-        self.init_graph(client.get_graph())
-        self.all_poke_src_dst()
-        bla = client.get_info()
-        bla_obj = json.loads(bla)
-        for i in range(0, int(bla_obj['GameServer']['agents'])):
-            client.add_agent('{\"id\":' + str(str(self.pokemons.pop().src)) + '}')
-
-    def game_algorithm(self, client: Client):
+    def game_algorithm(self, Client: Client):
         self.allocate_all_agents()
-        self.cmd(client)
-        client.move()
+        self.CMD(Client)
+        Client.move()
 
-
-def main():
-    PORT = 6666
-    # server host (default localhost 127.0.0.1)
-    HOST = '127.0.0.1'
-    MyClient = Client()
-    MyClient.start_connection(HOST, PORT)
-    # bla = MyClient.get_info()
-    # blaObj = json.loads(bla)
-    game = GameAlgo()
-    # print("Hera re the pokemons")
-    # game.init_pokemons(MyClient.get_pokemons())
-    # game.init_graph(MyClient.get_graph())
-    # print(game.pokemons)
-    # game.all_pok_src_dst()
-    # print(len(game.agents))
-    # print(str(game.pokemons.pop().src))
-    # for i in range(0 , int(blaObj['GameServer']['agents'])):
-    # MyClient.add_agent('{\"id\":'+ str(str(game.pokemons.pop().src)) +'}')
-    # MyClient.add_agent("{\"id\":1}")
-    # MyClient.add_agent("{\"id\":2}")
-    # MyClient.add_agent("{\"id\":3}")
-    # MyClient.start()
-
-    # game = GameAlgo()
-    # game.init_pokemons(MyClient.get_pokemons())
-    # game.init_graph(MyClient.get_graph())
-    game.beginning_of_the_game(MyClient)
-    game.update_game(MyClient.get_pokemons(), MyClient.get_agents(), MyClient.get_graph())
-    MyClient.start()
-    while MyClient.is_running() == "true":
-        game.update_game(MyClient.get_pokemons(), MyClient.get_agents(), None)
-        game.game_algorithm(MyClient)
-        # for a in game.agents.values():
-        # print(a)
-        print(MyClient.time_to_end())
-        print(MyClient.get_info())
-        time.sleep(0.1)
-    # game.all_pok_src_dst()
-    # game.init_agents(MyClient.get_agents())
-    # print(game.pokemons)
-    # print(game.time_to_poke(0, 9))
-    # print(game.time_to_poke(1, 9))
-    # print(game.time_to_poke(2, 9))
-    # temp = game.choose_agent()
-    # print(temp)
-    # print(game.agents.get(temp).path)
-    MyClient.stop_connection()
-    print("Hello")
-    exit(0)
-
-
-if __name__ == "__main__":
-    main()
+    def value_per_time(self, a: Agent):
+        max_value_per_time = 0
+        choosen_poke = None
+        for p in self.pokemons.Q:
+            if not p[2].is_aget_allocated:
+                temp_value = p[2].value / (self.time_to_poke(a.id, p[2].src) + 0.00001)
+                if temp_value > max_value_per_time:
+                    max_value_per_time = temp_value
+                    choosen_poke = p
+        choosen_poke[2].is_aget_allocated = True
+        a.path = self.graph.shortest_path(a.src, choosen_poke[2].src)[1]
+        a.path.append(choosen_poke[2].dst)
+        a.path.pop(0)
+        a.next_pokemon = 1
