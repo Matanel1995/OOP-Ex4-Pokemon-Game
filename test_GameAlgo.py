@@ -1,13 +1,14 @@
 from unittest import TestCase
 
-#  GRAPH PATH:
 from GameAlgo import *
 
+#  GRAPH srt:
 A0_str = 'data\A0'
 A1_str = 'data\A1'
 A2_str = 'data\A2'
 A3_str = 'data\A3'
-# POKEMON PATH
+
+# POKEMON str
 poke_0_str = '{"Pokemons": [{"Pokemon": {"value": 5.0,"type": -1,"pos": "35.197656770719604,32.10191878639921,0.0"}}]}'
 poke_3_str = '{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.197656770719604,32.10191878639921,0.0"}},' \
              '{"Pokemon":{"value":8.0,"type":-1,"pos":"35.199963710098416,32.105723673136964,0.0"}},{"Pokemon":{' \
@@ -29,6 +30,34 @@ poke_15_str = '{"Pokemons":[{"Pokemon":{"value":5.0,"type":-1,"pos":"35.20392770
               '{"Pokemon":{"value":8.0,"type":-1,"pos":"35.20622459040522,32.101281022067994,0.0"}},{"Pokemon":{' \
               '"value":5.0,"type":-1,"pos":"35.21200574506042,32.105721621191464,0.0"}},{"Pokemon":{"value":9.0,' \
               '"type":1,"pos":"35.212532074496366,32.106982780342726,0.0"}}]} '
+
+# AGENTS
+a1_str = '{"Agents":[{"Agent":{"id":0,"value":0.0,"src":0,"dest":1,"speed":1.0,"pos":"35.18753053591606,' \
+         '32.10378225882353,0.0"}}]} '
+a3_str = '{"Agents":[' \
+         '{"Agent":{"id":0,"value":0.0,"src":0,"dest":1,"speed":1.0,"pos":"0,0,0.0"}},' \
+         '{"Agent":{"id":1,"value":0.0,"src":1,"dest":2,"speed":2.0,"pos":"1,1,0.0"}},' \
+         '{"Agent":{"id":2,"value":0.0,"src":2,"dest":3,"speed":3.0,"pos":"2,2,0.0"}}' \
+         ']} '
+
+a5_str = '{"Agents":[' \
+         '{"Agent":{"id":0,"value":0.0,"src":0,"dest":1,"speed":1.0,"pos":"0,0,0.0"}},' \
+         '{"Agent":{"id":1,"value":0.0,"src":1,"dest":2,"speed":2.0,"pos":"1,1,0.0"}},' \
+         '{"Agent":{"id":2,"value":0.0,"src":2,"dest":3,"speed":3.0,"pos":"2,2,0.0"}},' \
+         '{"Agent":{"id":3,"value":0.0,"src":3,"dest":4,"speed":4.0,"pos":"3,3,0.0"}},' \
+         '{"Agent":{"id":4,"value":0.0,"src":4,"dest":5,"speed":5.0,"pos":"4,4,0.0"}},' \
+         '{"Agent":{"id":5,"value":0.0,"src":5,"dest":6,"speed":6.0,"pos":"5,5,0.0"}}' \
+         ']} '
+a7_str = '{"Agents":[' \
+         '{"Agent":{"id":0,"value":0.0,"src":0,"dest":1,"speed":1.0,"pos":"0,0,0.0"}},' \
+         '{"Agent":{"id":1,"value":0.0,"src":1,"dest":2,"speed":2.0,"pos":"1,1,0.0"}},' \
+         '{"Agent":{"id":2,"value":0.0,"src":2,"dest":3,"speed":3.0,"pos":"2,2,0.0"}},' \
+         '{"Agent":{"id":3,"value":0.0,"src":3,"dest":4,"speed":4.0,"pos":"3,3,0.0"}},' \
+         '{"Agent":{"id":4,"value":0.0,"src":4,"dest":5,"speed":5.0,"pos":"4,4,0.0"}},' \
+         '{"Agent":{"id":5,"value":0.0,"src":5,"dest":6,"speed":6.0,"pos":"5,5,0.0"}},' \
+         '{"Agent":{"id":6,"value":0.0,"src":6,"dest":7,"speed":7.0,"pos":"6,6,0.0"}},' \
+         '{"Agent":{"id":7,"value":0.0,"src":7,"dest":8,"speed":8.0,"pos":"7,7,0.0"}}' \
+         ']} '
 
 
 class TestGameAlgo(TestCase):
@@ -55,11 +84,32 @@ class TestGameAlgo(TestCase):
         self.assertEqual(game.pokemons.size(), 4)
         self.assertEqual(game.pokemons.peek()[2].value, 9)
 
-    def test_init_graph(self):
-        self.fail()
-
     def test_init_agents(self):
-        self.fail()
+        game: GameAlgo = GameAlgo()
+        game.init_agents(a3_str)
+        self.assertEqual(len(game.agents), 3)
+        for id, agent_ in game.agents.items():
+            self.assertEqual(agent_.id, id)
+            self.assertEqual(agent_.src, id)
+            self.assertEqual(agent_.dst, id + 1)
+            self.assertEqual(agent_.speed, id + 1)
+            self.assertEqual(agent_.pos, str(id) + "," + str(id) + ',' + str(0.0))
+        game.init_agents(a5_str)
+        self.assertEqual(len(game.agents), 6)
+        for id, agent_ in game.agents.items():
+            self.assertEqual(agent_.id, id)
+            self.assertEqual(agent_.src, id)
+            self.assertEqual(agent_.dst, id + 1)
+            self.assertEqual(agent_.speed, id + 1)
+            self.assertEqual(agent_.pos, str(id) + "," + str(id) + ',' + str(0.0))
+        game.init_agents(a7_str)
+        self.assertEqual(len(game.agents), 8)
+        for id, agent_ in game.agents.items():
+            self.assertEqual(agent_.id, id)
+            self.assertEqual(agent_.src, id)
+            self.assertEqual(agent_.dst, id + 1)
+            self.assertEqual(agent_.speed, id + 1)
+            self.assertEqual(agent_.pos, str(id) + "," + str(id) + ',' + str(0.0))
 
     def test_allocate_all_agents(self):
         self.fail()
@@ -79,11 +129,3 @@ class TestGameAlgo(TestCase):
     def test_all_pok_src_dst(self):
         self.fail()
 
-    def test_cmd(self):
-        self.fail()
-
-    def test_begining_of_the_game(self):
-        self.fail()
-
-    def test_game_algorithm(self):
-        self.fail()
