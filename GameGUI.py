@@ -12,9 +12,9 @@ WIDTH, HEIGHT = 1080, 720
 clock = pygame.time.Clock()
 
 
-class GameGui():
+class GameGui:
     pygame.init()
-    pygame.display.set_caption("Pokemon: Catch the all!")
+    pygame.display.set_caption("Pokemon: Gotta catch 'em all!")
 
     def __init__(self, game):
         self.game = game
