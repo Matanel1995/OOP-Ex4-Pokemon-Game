@@ -78,3 +78,10 @@ You can watch it here [YouTube](https://www.youtube.com/watch?v=NO44NKtqArc)</br
 * >pyhon3 Ex4.py
 * After that you will be rquired to insert case number , choose between 0 to 15 and press Enter
 ![RunCMD](https://user-images.githubusercontent.com/92520981/148658653-4a375c93-5a26-49ad-ad73-d2b743841139.jpeg)
+
+# Run from the release:
+* Download the .zip file
+* open the file 'Ex4.exe'
+* you will be saked to choose a case number between 0 and 15, then press Enter
+
+### Have fun!
