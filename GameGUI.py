@@ -53,7 +53,7 @@ class GameGui:
 
         data = json.loads(Client.get_info())["GameServer"]
 
-        font = pygame.font.Font('freesansbold.ttf', 14)
+        font = pygame.font.Font('docs/FreeSansBold.ttf', 14)
         currTime = Client.time_to_end()
         text_To_Finish = font.render('Time to finish: ' + str(int(currTime) / 1000) + ' sec.', True, black)
         textRect_To_Finish = text_To_Finish.get_rect()
