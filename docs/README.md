@@ -58,9 +58,9 @@ in that way we make sure each agent will choose a Pokemon that will maximise our
 
 ## Previous project
 All the function we used that related to the graph such as 
-* shortest path
-* initialize graph
-* and more
+* Shortest path
+* Initialize graph
+* And more
 can be found here with more explanation : [Ex3-OOP-Graph](https://github.com/RF555/OOP_Ex3)<br/>
 
 ## Glimpse at the game </br>
@@ -73,8 +73,8 @@ You can watch it here [YouTube](https://www.youtube.com/watch?v=NO44NKtqArc)</br
 
 ## How to run:
 * Clone the repository from this github 
-* opne CMD in the project directory
-* run this function
+* Open CMD in the project directory
+* Run this function
 * >pyhon3 Ex4.py
 * After that you will be rquired to insert case number , choose between 0 to 15 and press Enter
 ![RunCMD](https://user-images.githubusercontent.com/92520981/148658653-4a375c93-5a26-49ad-ad73-d2b743841139.jpeg)
