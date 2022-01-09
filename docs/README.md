@@ -8,9 +8,9 @@
 In this assignment we implemented a Pokemon game based on the previous assignments we had in this course.</br>
 In this game there are 16 cases witch the user can choose.
 the cases are differ by:
-* number of agents.
+* Number of agents.
 * number of Pokemons.
-* different graph.
+* Different graph.
 </br>
 The goal is to collect as many Pokemons within the given time , and do not exceed 10 moves per second. </br>
 
